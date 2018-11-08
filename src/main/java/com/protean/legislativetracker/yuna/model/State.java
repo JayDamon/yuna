@@ -31,6 +31,14 @@ public class State {
     public State() {
     }
 
+    public State(Integer stateId, String abbreviation, String stateName, boolean biennium, String capitol) {
+        this.stateId = stateId;
+        this.abbreviation = abbreviation;
+        this.stateName = stateName;
+        this.biennium = biennium;
+        this.capitol = capitol;
+    }
+
     public State(Integer stateId, String abbreviation, String stateName, boolean biennium, String carryOver, String capitol, BigDecimal latitude, BigDecimal longitude) {
         this.stateId = stateId;
         this.abbreviation = abbreviation;

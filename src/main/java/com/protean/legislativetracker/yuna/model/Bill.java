@@ -36,12 +36,12 @@ public class Bill {
     private Progress status;
     @Column(name = "status_date", nullable = false)
     private Date statusDate;
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, columnDefinition = "text")
     private String title;
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
     @OneToOne
-    @JoinColumn(name = "pending_committee_id", nullable = false)
+    @JoinColumn(name = "pending_committee_id")
     private Committee pendingCommittee;
     @Column(name = "url", nullable = false)
     private URL legiscanUrl;
@@ -80,7 +80,32 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee pendingCommittee, URL legiscanUrl, URL stateUrl, String changeHash, Calendar updated, Calendar created) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody,
+                Type type, String billNumber, Progress status, Date statusDate, String title,
+                String description, URL legiscanUrl, URL stateUrl, String changeHash,
+                Calendar updated, Calendar created) {
+        this.billId = billId;
+        this.state = state;
+        this.legislativeSession = legislativeSession;
+        this.body = body;
+        this.currentBody = currentBody;
+        this.type = type;
+        this.billNumber = billNumber;
+        this.status = status;
+        this.statusDate = statusDate;
+        this.title = title;
+        this.description = description;
+        this.legiscanUrl = legiscanUrl;
+        this.stateUrl = stateUrl;
+        this.changeHash = changeHash;
+        this.updated = updated;
+        this.created = created;
+    }
+
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body,
+                Body currentBody, Type type, String billNumber, Progress status, Date statusDate,
+                String title, String description, Committee pendingCommittee, URL legiscanUrl,
+                URL stateUrl, String changeHash, Calendar updated, Calendar created) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -353,7 +378,10 @@ public class Bill {
     @Override
     public int hashCode() {
 
-        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber, status, statusDate, title, description, pendingCommittee, legiscanUrl, stateUrl, changeHash, updated, created, progress, histories, sponsors, sasts, subjects, texts, votes, amendments, supplements, calendars);
+        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber,
+                status, statusDate, title, description, pendingCommittee, legiscanUrl, stateUrl,
+                changeHash, updated, created, progress, histories, sponsors, sasts, subjects,
+                texts, votes, amendments, supplements, calendars);
     }
 
     @Override

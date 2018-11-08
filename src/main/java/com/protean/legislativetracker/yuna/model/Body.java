@@ -29,7 +29,16 @@ public class Body { //Legislative body, i.e. House, Senate etc
     public Body() {
     }
 
-    public Body(Integer id, State state, Role role, Character abbreviation, String bodyShort, String bodyName, String bodyRoleAbbreviation, String bodyRoleName) {
+    public Body(Integer id, State state, Role role, Character abbreviation, String bodyName) {
+        this.id = id;
+        this.state = state;
+        this.role = role;
+        this.abbreviation = abbreviation;
+        this.bodyName = bodyName;
+    }
+
+    public Body(Integer id, State state, Role role, Character abbreviation, String bodyShort,
+                String bodyName, String bodyRoleAbbreviation, String bodyRoleName) {
         this.id = id;
         this.state = state;
         this.role = role;

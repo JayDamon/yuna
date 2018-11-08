@@ -3,6 +3,7 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class BillCalendarId implements Serializable {
@@ -34,5 +35,29 @@ public class BillCalendarId implements Serializable {
 
     public void setEventHash(String eventHash) {
         this.eventHash = eventHash;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillCalendarId that = (BillCalendarId) o;
+        return Objects.equals(bill, that.bill) &&
+                Objects.equals(eventHash, that.eventHash);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bill, eventHash);
+
+
+   }
+
+    @Override
+    public String toString() {
+        return "BillCalendarId{" +
+                "bill=" + bill +
+                ", eventHash='" + eventHash + '\'' +
+                '}';
     }
 }

@@ -2,6 +2,7 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class BillSastId implements Serializable {
@@ -34,5 +35,27 @@ public class BillSastId implements Serializable {
 
     public void setSastBillId(Bill sastBillId) {
         this.sastBillId = sastBillId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillSastId that = (BillSastId) o;
+        return Objects.equals(billId, that.billId) &&
+                Objects.equals(sastBillId, that.sastBillId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(billId, sastBillId);
+    }
+
+    @Override
+    public String toString() {
+        return "BillSastId{" +
+                "billId=" + billId +
+                ", sastBillId=" + sastBillId +
+                '}';
     }
 }

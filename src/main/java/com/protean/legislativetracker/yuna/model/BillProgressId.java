@@ -2,6 +2,7 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class BillProgressId implements Serializable {
@@ -33,5 +34,27 @@ public class BillProgressId implements Serializable {
 
     public void setProgressEventId(Integer progressEventId) {
         this.progressEventId = progressEventId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillProgressId that = (BillProgressId) o;
+        return Objects.equals(bill, that.bill) &&
+                Objects.equals(progressEventId, that.progressEventId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bill, progressEventId);
+    }
+
+    @Override
+    public String toString() {
+        return "BillProgressId{" +
+                "bill=" + bill +
+                ", progressEventId=" + progressEventId +
+                '}';
     }
 }

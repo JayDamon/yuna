@@ -9,7 +9,7 @@ public class LegislativeSession {
     @Id
     @Column(name = "session_id")
     private Integer sessionId;
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "state_id")
     private State state;
     @Column(name = "year_start", nullable = false)
@@ -28,7 +28,20 @@ public class LegislativeSession {
     public LegislativeSession() {
     }
 
-    public LegislativeSession(Integer sessionId, State state, Integer yearStart, Integer yearEnd, Boolean special, String sessionName, String sessionTitle, String sessionHash) {
+    public LegislativeSession(Integer sessionId, Integer yearStart, Integer yearEnd, Boolean special,
+                              String sessionName, String sessionTitle, String sessionHash) {
+        this.sessionId = sessionId;
+        this.yearStart = yearStart;
+        this.yearEnd = yearEnd;
+        this.special = special;
+        this.sessionName = sessionName;
+        this.sessionTitle = sessionTitle;
+        this.sessionHash = sessionHash;
+    }
+
+    public LegislativeSession(Integer sessionId, State state, Integer yearStart, Integer yearEnd,
+                              Boolean special, String sessionName, String sessionTitle,
+                              String sessionHash) {
         this.sessionId = sessionId;
         this.state = state;
         this.yearStart = yearStart;
@@ -120,7 +133,8 @@ public class LegislativeSession {
 
     @Override
     public int hashCode() {
-        return Objects.hash(sessionId, state, yearStart, yearEnd, special, sessionName, sessionTitle, sessionHash);
+        return Objects.hash(sessionId, state, yearStart, yearEnd, special, sessionName, sessionTitle,
+                sessionHash);
     }
 
     @Override
