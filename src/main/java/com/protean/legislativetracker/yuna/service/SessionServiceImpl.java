@@ -22,7 +22,7 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public boolean sessionHasChanged(Integer sessionId, String changeHash) {
-        return sessionRepository.existsBySessionIdAndSessionHash(sessionId, changeHash);
+        return !sessionRepository.existsBySessionIdAndSessionHash(sessionId, changeHash);
     }
 
     @Override

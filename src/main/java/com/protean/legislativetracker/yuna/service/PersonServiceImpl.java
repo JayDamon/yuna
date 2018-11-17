@@ -23,7 +23,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public boolean personHasChanged(Long personId, String personChangeHash) {
-        return personRepository.existsByIdAndPersonHash(personId, personChangeHash);
+        return !personRepository.existsByIdAndPersonHash(personId, personChangeHash);
     }
 
     @Override

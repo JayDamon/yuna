@@ -22,7 +22,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public boolean billHasChanged(Long billId, String changeHash) {
-        return billRepository.existsByBillIdAndChangeHash(billId, changeHash);
+        return !billRepository.existsByBillIdAndChangeHash(billId, changeHash);
     }
 
     @Override
