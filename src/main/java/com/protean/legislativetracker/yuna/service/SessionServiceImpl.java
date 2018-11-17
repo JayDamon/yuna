@@ -21,19 +21,8 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public List<LegislativeSession> getAllChangedSessions(List<LegislativeSession> sessions) {
-        if (sessions == null) {
-            String msg = "Session list must not be null";
-            log.debug(msg);
-            throw new IllegalArgumentException(msg);
-        }
-        List<LegislativeSession> changedSessions = new ArrayList<>();
-        for (LegislativeSession s : sessions) {
-            if (!sessionRepository.existsBySessionIdAndSessionHash(s.getSessionId(), s.getSessionHash())) {
-                changedSessions.add(s);
-            }
-        }
-        return changedSessions;
+    public boolean getAllChangedSessions(Integer sessionId, String changeHash) {
+        return sessionRepository.existsBySessionIdAndSessionHash(sessionId, changeHash);
     }
 
     @Override

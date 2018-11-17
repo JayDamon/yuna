@@ -21,18 +21,8 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public List<Bill> getAllChangedBills(List<Bill> bills) {
-        if (bills == null) {
-            String msg = "Bill list must not be null";
-            log.debug(msg);
-            throw new IllegalArgumentException(msg); }
-        List<Bill> changedBills = new ArrayList<>();
-        for (Bill b : bills) {
-            if (!billRepository.existsByBillIdAndChangeHash(b.getBillId(), b.getChangeHash())) {
-                changedBills.add(b);
-            }
-        }
-        return changedBills;
+    public boolean getAllChangedBills(Long billId, String changeHash) {
+        return billRepository.existsByBillIdAndChangeHash(billId, changeHash);
     }
 
     @Override
