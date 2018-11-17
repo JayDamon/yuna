@@ -21,7 +21,7 @@ public class SessionServiceImpl implements SessionService {
     }
 
     @Override
-    public boolean getAllChangedSessions(Integer sessionId, String changeHash) {
+    public boolean sessionHasChanged(Integer sessionId, String changeHash) {
         return sessionRepository.existsBySessionIdAndSessionHash(sessionId, changeHash);
     }
 

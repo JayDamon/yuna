@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BillService {
 
-    boolean getAllChangedBills(Long billId, String changeHash);
+    boolean billHasChanged(Long billId, String changeHash);
 
     List<Bill> saveBills(List<Bill> bills);
 

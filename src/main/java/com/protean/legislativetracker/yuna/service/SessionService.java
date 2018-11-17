@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface SessionService {
 
-    boolean getAllChangedSessions(Integer sessionId, String changeHash);
+    boolean sessionHasChanged(Integer sessionId, String changeHash);
 
     List<LegislativeSession> saveSessions(List<LegislativeSession> sessions);
 

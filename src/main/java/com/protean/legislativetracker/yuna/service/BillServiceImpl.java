@@ -21,7 +21,7 @@ public class BillServiceImpl implements BillService {
     }
 
     @Override
-    public boolean getAllChangedBills(Long billId, String changeHash) {
+    public boolean billHasChanged(Long billId, String changeHash) {
         return billRepository.existsByBillIdAndChangeHash(billId, changeHash);
     }
 
