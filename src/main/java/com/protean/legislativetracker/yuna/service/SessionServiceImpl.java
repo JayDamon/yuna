@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class SessionServiceImpl implements SessionService {
@@ -30,5 +31,10 @@ public class SessionServiceImpl implements SessionService {
         List<LegislativeSession> savedSessions = new ArrayList<>();
         sessionRepository.saveAll(sessions).forEach(savedSessions::add);
         return savedSessions;
+    }
+
+    @Override
+    public Set<Integer> getSessionIds() {
+        return sessionRepository.findAllSessionIds();
     }
 }
