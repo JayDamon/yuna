@@ -19,9 +19,9 @@ public class Committee {
     @Column(name = "committee_id", nullable = false)
     private Integer id;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "committee_body_id", nullable = false)
+    @JoinColumn(name = "committee_body_id")
     private Body body;
-    @Column(name = "committee_name", nullable = false)
+    @Column(name = "committee_name")
     private String name;
     @ManyToMany(mappedBy = "committees")
     private Set<Bill> bills;
