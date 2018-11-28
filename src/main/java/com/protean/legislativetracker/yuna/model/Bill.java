@@ -5,7 +5,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -50,13 +49,13 @@ public class Bill {
     private String title;
     @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "bill_committee",
+            joinColumns = @JoinColumn(name = "bill_id"),
+            inverseJoinColumns = @JoinColumn(name = "committee_id"))
     private Set<Committee> committees;
     @OneToOne(cascade=CascadeType.PERSIST)
-    @JoinColumns({
-            @JoinColumn(name = "pending_committee_id", referencedColumnName = "committee_id"),
-            @JoinColumn(name = "bill_id", referencedColumnName = "bill_id")
-    })
+    @JoinColumn(name = "pending_committee_id")
     private Committee pendingCommittee;
     @Column(name = "url", nullable = false)
     private URL legiscanUrl;
@@ -95,10 +94,7 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody,
-                Type type, String billNumber, Progress status, Date statusDate, String title,
-                String description, URL legiscanUrl, URL stateUrl, String changeHash,
-                Calendar updated, Calendar created) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Set<Committee> committees, Committee pendingCommittee, URL legiscanUrl, URL stateUrl, String changeHash, Calendar updated, Calendar created, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -110,34 +106,23 @@ public class Bill {
         this.statusDate = statusDate;
         this.title = title;
         this.description = description;
-        this.legiscanUrl = legiscanUrl;
-        this.stateUrl = stateUrl;
-        this.changeHash = changeHash;
-        this.updated = updated;
-        this.created = created;
-    }
-
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body,
-                Body currentBody, Type type, String billNumber, Progress status, Date statusDate,
-                String title, String description, Committee pendingCommittee, URL legiscanUrl,
-                URL stateUrl, String changeHash, Calendar updated, Calendar created) {
-        this.billId = billId;
-        this.state = state;
-        this.legislativeSession = legislativeSession;
-        this.body = body;
-        this.currentBody = currentBody;
-        this.type = type;
-        this.billNumber = billNumber;
-        this.status = status;
-        this.statusDate = statusDate;
-        this.title = title;
-        this.description = description;
+        this.committees = committees;
         this.pendingCommittee = pendingCommittee;
         this.legiscanUrl = legiscanUrl;
         this.stateUrl = stateUrl;
         this.changeHash = changeHash;
         this.updated = updated;
         this.created = created;
+        this.progress = progress;
+        this.histories = histories;
+        this.sponsors = sponsors;
+        this.sasts = sasts;
+        this.subjects = subjects;
+        this.texts = texts;
+        this.votes = votes;
+        this.amendments = amendments;
+        this.supplements = supplements;
+        this.calendars = calendars;
     }
 
     public Long getBillId() {
@@ -226,6 +211,14 @@ public class Bill {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Set<Committee> getCommittees() {
+        return committees;
+    }
+
+    public void setCommittees(Set<Committee> committees) {
+        this.committees = committees;
     }
 
     public Committee getPendingCommittee() {
@@ -368,10 +361,11 @@ public class Bill {
                 Objects.equals(currentBody, bill.currentBody) &&
                 Objects.equals(type, bill.type) &&
                 Objects.equals(billNumber, bill.billNumber) &&
-                status == bill.status &&
+                Objects.equals(status, bill.status) &&
                 Objects.equals(statusDate, bill.statusDate) &&
                 Objects.equals(title, bill.title) &&
                 Objects.equals(description, bill.description) &&
+                Objects.equals(committees, bill.committees) &&
                 Objects.equals(pendingCommittee, bill.pendingCommittee) &&
                 Objects.equals(legiscanUrl, bill.legiscanUrl) &&
                 Objects.equals(stateUrl, bill.stateUrl) &&
@@ -392,11 +386,7 @@ public class Bill {
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber,
-                status, statusDate, title, description, pendingCommittee, legiscanUrl, stateUrl,
-                changeHash, updated, created, progress, histories, sponsors, sasts, subjects,
-                texts, votes, amendments, supplements, calendars);
+        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber, status, statusDate, title, description, committees, pendingCommittee, legiscanUrl, stateUrl, changeHash, updated, created, progress, histories, sponsors, sasts, subjects, texts, votes, amendments, supplements, calendars);
     }
 
     @Override
@@ -413,6 +403,7 @@ public class Bill {
                 ", statusDate=" + statusDate +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
+                ", committees=" + committees +
                 ", pendingCommittee=" + pendingCommittee +
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +

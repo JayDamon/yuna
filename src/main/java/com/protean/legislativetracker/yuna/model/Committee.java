@@ -1,54 +1,47 @@
 package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "committee")
 public class Committee {
 
-    @EmbeddedId
-    private BillCommitteeId id;
-
-    @ManyToOne
-    @JoinColumn(name = "bill_id", insertable = false, updatable = false)
-    private Bill bill;
+    @Id
+    @Column(name = "committee_id", nullable = false)
+    private Integer id;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "committee_body_id", nullable = false)
     private Body body;
     @Column(name = "committee_name", nullable = false)
     private String name;
+    @ManyToMany(mappedBy = "committees")
+    private Set<Bill> bills;
 
     public Committee() {
     }
 
-    public Committee(Bill bill, Body body, String name) {
-        this.bill = bill;
+    public Committee(Integer id, Body body, String name, Set<Bill> bills) {
+        this.id = id;
         this.body = body;
         this.name = name;
+        this.bills = bills;
     }
 
-    public BillCommitteeId getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(BillCommitteeId id) {
+    public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Bill getBill() {
-        return bill;
-    }
-
-    public void setBill(Bill bill) {
-        this.bill = bill;
     }
 
     public Body getBody() {
@@ -67,29 +60,37 @@ public class Committee {
         this.name = name;
     }
 
+    public Set<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(Set<Bill> bills) {
+        this.bills = bills;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Committee committee = (Committee) o;
         return Objects.equals(id, committee.id) &&
-                Objects.equals(bill, committee.bill) &&
                 Objects.equals(body, committee.body) &&
-                Objects.equals(name, committee.name);
+                Objects.equals(name, committee.name) &&
+                Objects.equals(bills, committee.bills);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, bill, body, name);
+        return Objects.hash(id, body, name, bills);
     }
 
     @Override
     public String toString() {
         return "Committee{" +
                 "id=" + id +
-                ", bill=" + bill +
                 ", body=" + body +
                 ", name='" + name + '\'' +
+                ", bills=" + bills +
                 '}';
     }
 }
