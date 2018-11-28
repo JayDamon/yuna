@@ -14,11 +14,9 @@ public class BillProgress {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)
     private Bill bill;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "progress_event_id")
     private Progress progress;
-
     @Column(name = "progress_date")
     private Date progressDate;
 

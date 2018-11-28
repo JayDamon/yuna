@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -49,8 +50,13 @@ public class Bill {
     private String title;
     @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
-    @OneToOne
-    @JoinColumn(name = "pending_committee_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
+    private Set<Committee> committees;
+    @OneToOne(cascade=CascadeType.PERSIST)
+    @JoinColumns({
+            @JoinColumn(name = "pending_committee_id", referencedColumnName = "committee_id"),
+            @JoinColumn(name = "bill_id", referencedColumnName = "bill_id")
+    })
     private Committee pendingCommittee;
     @Column(name = "url", nullable = false)
     private URL legiscanUrl;
