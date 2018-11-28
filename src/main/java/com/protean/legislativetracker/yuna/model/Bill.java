@@ -11,14 +11,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "bill")
-public class Bill {
+public class Bill extends DateAuditable {
 
     @Id
     @Column(name = "bill_id", nullable = false)
@@ -63,10 +62,6 @@ public class Bill {
     private URL stateUrl;
     @Column(name = "change_hash", nullable = false)
     private String changeHash;
-    @Column(name = "updated", nullable = false)
-    private Calendar updated;
-    @Column(name = "created", nullable = false)
-    private Calendar created;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillProgress> progress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
@@ -94,7 +89,7 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Set<Committee> committees, Committee pendingCommittee, URL legiscanUrl, URL stateUrl, String changeHash, Calendar updated, Calendar created, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Set<Committee> committees, Committee pendingCommittee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -111,8 +106,6 @@ public class Bill {
         this.legiscanUrl = legiscanUrl;
         this.stateUrl = stateUrl;
         this.changeHash = changeHash;
-        this.updated = updated;
-        this.created = created;
         this.progress = progress;
         this.histories = histories;
         this.sponsors = sponsors;
@@ -253,22 +246,6 @@ public class Bill {
         this.changeHash = changeHash;
     }
 
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     public Set<BillProgress> getProgress() {
         return progress;
     }
@@ -370,8 +347,6 @@ public class Bill {
                 Objects.equals(legiscanUrl, bill.legiscanUrl) &&
                 Objects.equals(stateUrl, bill.stateUrl) &&
                 Objects.equals(changeHash, bill.changeHash) &&
-                Objects.equals(updated, bill.updated) &&
-                Objects.equals(created, bill.created) &&
                 Objects.equals(progress, bill.progress) &&
                 Objects.equals(histories, bill.histories) &&
                 Objects.equals(sponsors, bill.sponsors) &&
@@ -386,7 +361,7 @@ public class Bill {
 
     @Override
     public int hashCode() {
-        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber, status, statusDate, title, description, committees, pendingCommittee, legiscanUrl, stateUrl, changeHash, updated, created, progress, histories, sponsors, sasts, subjects, texts, votes, amendments, supplements, calendars);
+        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber, status, statusDate, title, description, committees, pendingCommittee, legiscanUrl, stateUrl, changeHash, progress, histories, sponsors, sasts, subjects, texts, votes, amendments, supplements, calendars);
     }
 
     @Override
@@ -408,8 +383,6 @@ public class Bill {
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +
                 ", changeHash='" + changeHash + '\'' +
-                ", updated=" + updated +
-                ", created=" + created +
                 ", progress=" + progress +
                 ", histories=" + histories +
                 ", sponsors=" + sponsors +
