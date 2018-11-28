@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_amendment")
-public class BillAmendment {
+public class BillAmendment extends DateAuditable {
     @Id
     @Column(name = "amendment_id")
     private Long amendmentId;
@@ -35,15 +35,11 @@ public class BillAmendment {
     private URL legiscanUrl;
     @Column(name = "state_url")
     private URL stateUrl;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     public BillAmendment() {
     }
 
-    public BillAmendment(Long amendmentId, Bill bill, Integer localCopy, Integer adopted, Body body, MimeType mimeType, Date date, String title, String description, URL legiscanUrl, URL stateUrl, Calendar updated, Calendar created) {
+    public BillAmendment(Long amendmentId, Bill bill, Integer localCopy, Integer adopted, Body body, MimeType mimeType, Date date, String title, String description, URL legiscanUrl, URL stateUrl) {
         this.amendmentId = amendmentId;
         this.bill = bill;
         this.localCopy = localCopy;
@@ -55,8 +51,6 @@ public class BillAmendment {
         this.description = description;
         this.legiscanUrl = legiscanUrl;
         this.stateUrl = stateUrl;
-        this.updated = updated;
-        this.created = created;
     }
 
     public Long getAmendmentId() {
@@ -147,22 +141,6 @@ public class BillAmendment {
         this.stateUrl = stateUrl;
     }
 
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -178,15 +156,13 @@ public class BillAmendment {
                 Objects.equals(title, that.title) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(legiscanUrl, that.legiscanUrl) &&
-                Objects.equals(stateUrl, that.stateUrl) &&
-                Objects.equals(updated, that.updated) &&
-                Objects.equals(created, that.created);
+                Objects.equals(stateUrl, that.stateUrl);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(amendmentId, bill, localCopy, adopted, body, mimeType, date, title, description, legiscanUrl, stateUrl, updated, created);
+        return Objects.hash(amendmentId, bill, localCopy, adopted, body, mimeType, date, title, description, legiscanUrl, stateUrl);
     }
 
     @Override
@@ -203,8 +179,6 @@ public class BillAmendment {
                 ", description='" + description + '\'' +
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +
-                ", updated=" + updated +
-                ", created=" + created +
                 '}';
     }
 }

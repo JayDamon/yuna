@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_text")
-public class BillText {
+public class BillText extends DateAuditable {
     @Id
     @Column(name = "text_id")
     private Long textId;
@@ -30,10 +30,6 @@ public class BillText {
     private URL legiscanUrl;
     @Column(name = "state_url")
     private URL stateUrl;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     public BillText() {
     }
@@ -102,22 +98,6 @@ public class BillText {
         this.stateUrl = stateUrl;
     }
 
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -130,15 +110,13 @@ public class BillText {
                 Objects.equals(mimeType, billText.mimeType) &&
                 Objects.equals(date, billText.date) &&
                 Objects.equals(legiscanUrl, billText.legiscanUrl) &&
-                Objects.equals(stateUrl, billText.stateUrl) &&
-                Objects.equals(updated, billText.updated) &&
-                Objects.equals(created, billText.created);
+                Objects.equals(stateUrl, billText.stateUrl);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(textId, bill, localCopy, textType, mimeType, date, legiscanUrl, stateUrl, updated, created);
+        return Objects.hash(textId, bill, localCopy, textType, mimeType, date, legiscanUrl, stateUrl);
     }
 
     @Override
@@ -152,8 +130,6 @@ public class BillText {
                 ", date=" + date +
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +
-                ", updated=" + updated +
-                ", created=" + created +
                 '}';
     }
 }

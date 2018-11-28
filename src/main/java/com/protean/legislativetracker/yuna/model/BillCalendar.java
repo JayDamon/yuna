@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_calendar")
-public class BillCalendar {
+public class BillCalendar extends DateAuditable {
 
     @EmbeddedId
     private BillCalendarId id;
@@ -29,23 +29,17 @@ public class BillCalendar {
     private String location;
     @Column(name = "event_desc")
     private String description;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     public BillCalendar() {
     }
 
-    public BillCalendar(Bill bill, String eventHash, EventType eventType, Date date, Time time, String location, String description, Calendar updated, Calendar created) {
+    public BillCalendar(Bill bill, String eventHash, EventType eventType, Date date, Time time, String location, String description) {
         this.bill = bill;
         this.eventType = eventType;
         this.date = date;
         this.time = time;
         this.location = location;
         this.description = description;
-        this.updated = updated;
-        this.created = created;
         this.id = new BillCalendarId(bill, eventHash);
     }
 
@@ -105,22 +99,6 @@ public class BillCalendar {
         this.description = description;
     }
 
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -132,15 +110,13 @@ public class BillCalendar {
                 Objects.equals(date, that.date) &&
                 Objects.equals(time, that.time) &&
                 Objects.equals(location, that.location) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(updated, that.updated) &&
-                Objects.equals(created, that.created);
+                Objects.equals(description, that.description);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bill, eventType, date, time, location, description, updated, created);
+        return Objects.hash(id, bill, eventType, date, time, location, description);
     }
 
     @Override
@@ -153,8 +129,6 @@ public class BillCalendar {
                 ", time=" + time +
                 ", location='" + location + '\'' +
                 ", description='" + description + '\'' +
-                ", updated=" + updated +
-                ", created=" + created +
                 '}';
     }
 }

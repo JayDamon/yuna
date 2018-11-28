@@ -7,7 +7,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "person")
-public class Person {
+public class Person extends DateAuditable {
     @Id
     @Column(name = "person_id")
     private Long id;
@@ -47,10 +47,6 @@ public class Person {
     private Long openSecretsId;
     @Column(name = "person_hash")
     private String personHash;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     @OneToMany(mappedBy = "person")
     private Set<BillVoteDetail> votes;
@@ -58,7 +54,7 @@ public class Person {
     public Person() {
     }
 
-    public Person(Long id, State state, Role role, Party party, String name, String firstName, String middleName, String lastName, String suffix, String nickname, String district, Committee committee, String ballotpedia, Long followTheMoneyId, Long voteSmartId, Long openSecretsId, String personHash, Calendar updated, Calendar created) {
+    public Person(Long id, State state, Role role, Party party, String name, String firstName, String middleName, String lastName, String suffix, String nickname, String district, Committee committee, String ballotpedia, Long followTheMoneyId, Long voteSmartId, Long openSecretsId, String personHash) {
         this.id = id;
         this.state = state;
         this.role = role;
@@ -76,8 +72,6 @@ public class Person {
         this.voteSmartId = voteSmartId;
         this.openSecretsId = openSecretsId;
         this.personHash = personHash;
-        this.updated = updated;
-        this.created = created;
     }
 
     public Long getId() {
@@ -216,22 +210,6 @@ public class Person {
         this.personHash = personHash;
     }
 
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     public Set<BillVoteDetail> getVotes() {
         return votes;
     }
@@ -262,15 +240,13 @@ public class Person {
                 Objects.equals(voteSmartId, person.voteSmartId) &&
                 Objects.equals(openSecretsId, person.openSecretsId) &&
                 Objects.equals(personHash, person.personHash) &&
-                Objects.equals(updated, person.updated) &&
-                Objects.equals(created, person.created) &&
                 Objects.equals(votes, person.votes);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, state, role, party, name, firstName, middleName, lastName, suffix, nickname, district, committee, ballotpedia, followTheMoneyId, voteSmartId, openSecretsId, personHash, updated, created, votes);
+        return Objects.hash(id, state, role, party, name, firstName, middleName, lastName, suffix, nickname, district, committee, ballotpedia, followTheMoneyId, voteSmartId, openSecretsId, personHash, votes);
     }
 
     @Override
@@ -293,8 +269,6 @@ public class Person {
                 ", voteSmartId=" + voteSmartId +
                 ", openSecretsId=" + openSecretsId +
                 ", personHash='" + personHash + '\'' +
-                ", updated=" + updated +
-                ", created=" + created +
                 ", votes=" + votes +
                 '}';
     }

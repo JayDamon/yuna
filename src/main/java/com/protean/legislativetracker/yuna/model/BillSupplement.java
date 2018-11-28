@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_supplement")
-public class BillSupplement {
+public class BillSupplement extends DateAuditable {
 
     @Id
     @Column(name = "supplement_id")
@@ -39,10 +39,6 @@ public class BillSupplement {
     private URL legiscanUrl;
     @Column(name = "state_url")
     private URL stateUrl;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     public BillSupplement() {
     }
@@ -126,23 +122,6 @@ public class BillSupplement {
     public void setStateUrl(URL stateUrl) {
         this.stateUrl = stateUrl;
     }
-
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -157,15 +136,13 @@ public class BillSupplement {
                 Objects.equals(title, that.title) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(legiscanUrl, that.legiscanUrl) &&
-                Objects.equals(stateUrl, that.stateUrl) &&
-                Objects.equals(updated, that.updated) &&
-                Objects.equals(created, that.created);
+                Objects.equals(stateUrl, that.stateUrl);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bill, localCopy, supplementType, mimeType, date, title, description, legiscanUrl, stateUrl, updated, created);
+        return Objects.hash(id, bill, localCopy, supplementType, mimeType, date, title, description, legiscanUrl, stateUrl);
     }
 
     @Override
@@ -181,8 +158,6 @@ public class BillSupplement {
                 ", description='" + description + '\'' +
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +
-                ", updated=" + updated +
-                ", created=" + created +
                 '}';
     }
 }

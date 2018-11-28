@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "bill_vote")
-public class BillVote {
+public class BillVote extends DateAuditable {
     @Id
     @Column(name = "roll_call_id")
     private Long voteId;
@@ -38,10 +38,6 @@ public class BillVote {
     private URL legiscanUrl;
     @Column(name = "state_url")
     private URL stateUrl;
-    @Column(name = "updated")
-    private Calendar updated;
-    @Column(name = "created")
-    private Calendar created;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rollCall")
     private Set<BillVoteDetail> details;
@@ -49,7 +45,7 @@ public class BillVote {
     public BillVote() {
     }
 
-    public BillVote(Long voteId, Bill bill, Body body, Date date, Integer yea, Integer nay, Integer nv, Integer absent, Integer total, Boolean passed, URL legiscanUrl, URL stateUrl, Calendar updated, Calendar created, Set<BillVoteDetail> details) {
+    public BillVote(Long voteId, Bill bill, Body body, Date date, Integer yea, Integer nay, Integer nv, Integer absent, Integer total, Boolean passed, URL legiscanUrl, URL stateUrl, Set<BillVoteDetail> details) {
         this.voteId = voteId;
         this.bill = bill;
         this.body = body;
@@ -62,8 +58,6 @@ public class BillVote {
         this.passed = passed;
         this.legiscanUrl = legiscanUrl;
         this.stateUrl = stateUrl;
-        this.updated = updated;
-        this.created = created;
         this.details = details;
     }
 
@@ -169,22 +163,6 @@ public class BillVote {
 
     public void setStateUrl(URL stateUrl) {
         this.stateUrl = stateUrl;
-    }
-
-    public Calendar getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Calendar updated) {
-        this.updated = updated;
-    }
-
-    public Calendar getCreated() {
-        return created;
-    }
-
-    public void setCreated(Calendar created) {
-        this.created = created;
     }
 
     public Set<BillVoteDetail> getDetails() {
