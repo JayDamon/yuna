@@ -326,6 +326,10 @@ public class Bill extends DateAuditable {
         this.calendars = calendars;
     }
 
+    public Bill getBill() {
+        return this;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
