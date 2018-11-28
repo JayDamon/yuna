@@ -226,6 +226,7 @@ public class Bill {
     }
 
     public void setPendingCommittee(Committee pendingCommittee) {
+        if (pendingCommittee.getId() == 0) {pendingCommittee = null; }
         this.pendingCommittee = pendingCommittee;
     }
 
