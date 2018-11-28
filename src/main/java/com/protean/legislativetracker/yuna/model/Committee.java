@@ -30,7 +30,7 @@ public class Committee {
     }
 
     public Committee(Integer id, Body body, String name, Set<Bill> bills) {
-        this.id = id;
+        setId(id);
         this.body = body;
         this.name = name;
         this.bills = bills;
@@ -41,6 +41,7 @@ public class Committee {
     }
 
     public void setId(Integer id) {
+        if (id.equals(0)) { id = null; }
         this.id = id;
     }
 
