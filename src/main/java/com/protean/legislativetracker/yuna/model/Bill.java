@@ -70,7 +70,7 @@ public class Bill extends DateAuditable {
     private Set<BillSponsor> sponsors;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill", orphanRemoval = true)
     private Set<BillSast> sasts;
-    @ManyToMany(mappedBy = "subjects")
+    @ManyToMany(mappedBy = "bills")
     private Set<Subject> subjects;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillText> texts;
