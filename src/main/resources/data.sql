@@ -303,3 +303,7 @@ INSERT INTO body (body_id, state_id, role_id, body_abbr, body_short, body_name, 
 INSERT INTO body (body_id, state_id, role_id, body_abbr, body_short, body_name, body_role_abbr, body_role_name) VALUES (125, 15, 3, 'J', 'Joint', 'Joint Conference', 'Jnt', 'Joint');
 INSERT INTO body (body_id, state_id, role_id, body_abbr, body_short, body_name, body_role_abbr, body_role_name) VALUES (126, 20, 3, 'J', 'Joint', 'Joint Conference', 'Jnt', 'Joint');
 INSERT INTO body (body_id, state_id, role_id, body_abbr, body_short, body_name, body_role_abbr, body_role_name) VALUES (127, 41, 3, 'J', 'Joint', 'Joint Conference', 'Jnt', 'Joint');
+
+INSERT INTO event_type (event_type_id, event_type_desc) VALUES (1, 'Hearing');
+INSERT INTO event_type (event_type_id, event_type_desc) VALUES (2, 'Executive Session');
+INSERT INTO event_type (event_type_id, event_type_desc) VALUES (3, 'Markup Session');

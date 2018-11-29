@@ -10,15 +10,15 @@ public class BillHistoryId implements Serializable, BillId {
     @JoinColumn(name = "bill_id")
     private Bill bill;
 
-    @Column(name = "history_id")
-    private Integer historyStep;
+    @Column(name = "history_action")
+    private String action;
 
     public BillHistoryId() {
     }
 
-    public BillHistoryId(Bill bill, Integer historyStep) {
+    public BillHistoryId(Bill bill, String action) {
         this.bill = bill;
-        this.historyStep = historyStep;
+        this.action = action;
     }
 
     public Bill getBill() {
@@ -30,28 +30,19 @@ public class BillHistoryId implements Serializable, BillId {
         this.bill = billId;
     }
 
-    public Integer getHistoryStep() {
-        return historyStep;
+    public String getAction() {
+        return action;
     }
 
-    public void setHistoryStep(Integer historyStep) {
-        this.historyStep = historyStep;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillHistoryId that = (BillHistoryId) o;
-        return Objects.equals(bill, that.bill) &&
-                Objects.equals(historyStep, that.historyStep);
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override
     public String toString() {
         return "BillHistoryId{" +
-                "bill=" + bill.getBillId() +
-                ", historyStep=" + historyStep +
+                "bill=" + bill +
+                ", action='" + action + '\'' +
                 '}';
     }
 }

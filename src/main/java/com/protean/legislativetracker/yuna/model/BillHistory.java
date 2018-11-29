@@ -6,11 +6,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_history")
-public class BillHistory implements MappedBill {
+public class BillHistory implements MappedBillId<BillHistoryId> {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long billHistoryId;
+    @EmbeddedId
+    private BillHistoryId id = new BillHistoryId();
 
     @ManyToOne
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)
@@ -22,8 +21,7 @@ public class BillHistory implements MappedBill {
     private Body body;
     @Column(name = "history_date")
     private Date date;
-    @Column(name = "history_action")
-    private String action;
+
 
     public BillHistory() {
     }
@@ -33,15 +31,17 @@ public class BillHistory implements MappedBill {
         this.historyMajor = historyMajor;
         this.body = body;
         this.date = date;
-        this.action = action;
+        this.id = new BillHistoryId(bill, action);
     }
 
-    public Long getBillHistoryId() {
-        return billHistoryId;
+    @Override
+    public BillHistoryId getId() {
+        return id;
     }
 
-    public void setBillHistoryId(Long billHistoryId) {
-        this.billHistoryId = billHistoryId;
+    @Override
+    public void setId(BillHistoryId id) {
+        this.id = id;
     }
 
     public Bill getBill() {
@@ -77,23 +77,26 @@ public class BillHistory implements MappedBill {
         this.date = date;
     }
 
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillHistory that = (BillHistory) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(bill, that.bill) &&
+                Objects.equals(historyMajor, that.historyMajor) &&
+                Objects.equals(body, that.body) &&
+                Objects.equals(date, that.date);
     }
 
     @Override
     public String toString() {
         return "BillHistory{" +
-                "billHistoryId=" + billHistoryId +
+                "id=" + id +
                 ", bill=" + bill.getBillId() +
                 ", historyMajor=" + historyMajor +
                 ", body=" + body +
                 ", date=" + date +
-                ", action='" + action + '\'' +
                 '}';
     }
 }
