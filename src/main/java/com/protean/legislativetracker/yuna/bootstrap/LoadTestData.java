@@ -17,6 +17,7 @@ public class LoadTestData {
     }
 
     public void loadSessionData() {
+        
         Resource resource = new ClassPathResource("initialdata.sql");
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
         databasePopulator.execute(dataSource);
