@@ -6,10 +6,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_history")
-public class BillHistory implements MappedBillId<BillHistoryId> {
+public class BillHistory implements MappedBill {
 
-    @EmbeddedId
-    private BillHistoryId id = new BillHistoryId();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long billHistoryId;
 
     @ManyToOne
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)
@@ -27,23 +28,20 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     public BillHistory() {
     }
 
-    public BillHistory(Bill bill, Integer historyStep, Integer historyMajor, Body body, Date date, String action) {
+    public BillHistory(Bill bill, Integer historyMajor, Body body, Date date, String action) {
         this.bill = bill;
         this.historyMajor = historyMajor;
         this.body = body;
         this.date = date;
         this.action = action;
-        this.id = new BillHistoryId(bill, historyStep);
     }
 
-    @Override
-    public BillHistoryId getId() {
-        return id;
+    public Long getBillHistoryId() {
+        return billHistoryId;
     }
 
-    @Override
-    public void setId(BillHistoryId id) {
-        this.id = id;
+    public void setBillHistoryId(Long billHistoryId) {
+        this.billHistoryId = billHistoryId;
     }
 
     public Bill getBill() {
@@ -88,22 +86,9 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillHistory that = (BillHistory) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(bill, that.bill) &&
-                Objects.equals(historyMajor, that.historyMajor) &&
-                Objects.equals(body, that.body) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(action, that.action);
-    }
-
-    @Override
     public String toString() {
         return "BillHistory{" +
-                "id=" + id +
+                "billHistoryId=" + billHistoryId +
                 ", bill=" + bill.getBillId() +
                 ", historyMajor=" + historyMajor +
                 ", body=" + body +

@@ -9,7 +9,8 @@ public class BillHistoryId implements Serializable, BillId {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id")
     private Bill bill;
-    @Column(name = "history_step")
+
+    @Column(name = "history_id")
     private Integer historyStep;
 
     public BillHistoryId() {
