@@ -60,12 +60,6 @@ public class BillReason {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, reason, created);
-    }
-
-    @Override
     public String toString() {
         return "BillReason{" +
                 "id=" + id +

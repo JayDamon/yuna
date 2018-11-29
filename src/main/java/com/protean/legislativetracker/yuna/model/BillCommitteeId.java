@@ -51,11 +51,6 @@ public class BillCommitteeId implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(bill.getBillId(), committeeId);
-    }
-
-    @Override
     public String toString() {
         return "BillCommitteeId{" +
                 "bill=" + bill.getBillId() +

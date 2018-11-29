@@ -77,14 +77,6 @@ public class BillVoteDetail implements Serializable {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, rollCall,
-//                person,
-                vote);
-    }
-
-    @Override
     public String toString() {
         return "BillVoteDetail{" +
                 "id=" + id +

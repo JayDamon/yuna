@@ -130,12 +130,6 @@ public class State {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(stateId, abbreviation, stateName, biennium, carryOver, capitol, latitude, longitude);
-    }
-
-    @Override
     public String toString() {
         return "State{" +
                 "stateId='" + stateId + '\'' +

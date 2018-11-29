@@ -129,12 +129,6 @@ public class Body { //Legislative body, i.e. House, Senate etc
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, state, role, abbreviation, bodyShort, bodyName, bodyRoleAbbreviation, bodyRoleName);
-    }
-
-    @Override
     public String toString() {
         return "Body{" +
                 "id=" + id +

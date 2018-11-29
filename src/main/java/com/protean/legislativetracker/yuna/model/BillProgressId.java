@@ -47,11 +47,6 @@ public class BillProgressId implements Serializable, BillId {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(bill.getBillId(), progressEventId);
-    }
-
-    @Override
     public String toString() {
         return "BillProgressId{" +
                 "bill=" + bill.getBillId() +

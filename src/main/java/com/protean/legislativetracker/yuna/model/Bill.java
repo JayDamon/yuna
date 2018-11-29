@@ -364,11 +364,6 @@ public class Bill extends DateAuditable {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(billId, state, legislativeSession, body, currentBody, type, billNumber, status, statusDate, title, description, committees, pendingCommittee, legiscanUrl, stateUrl, changeHash, progress, histories, sponsors, sasts, subjects, texts, votes, amendments, supplements, calendars);
-    }
-
-    @Override
     public String toString() {
         return "Bill{" +
                 "billId=" + billId +

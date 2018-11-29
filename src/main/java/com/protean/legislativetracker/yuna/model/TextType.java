@@ -73,12 +73,6 @@ public class TextType {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, name, textSort, supplement);
-    }
-
-    @Override
     public String toString() {
         return "TextType{" +
                 "id=" + id +

@@ -80,11 +80,6 @@ public class BillSast implements MappedBillId<BillSastId> {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, bill.getBillId(), sastBill, sastType);
-    }
-
-    @Override
     public String toString() {
         return "BillSast{" +
                 "id=" + id +

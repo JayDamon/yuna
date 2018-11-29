@@ -81,11 +81,6 @@ public class Committee {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(id, body, name, bills);
-    }
-
-    @Override
     public String toString() {
         return "Committee{" +
                 "id=" + id +

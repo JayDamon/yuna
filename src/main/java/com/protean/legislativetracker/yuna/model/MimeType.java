@@ -61,12 +61,6 @@ public class MimeType {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, type, isBinary);
-    }
-
-    @Override
     public String toString() {
         return "MimeType{" +
                 "id=" + id +

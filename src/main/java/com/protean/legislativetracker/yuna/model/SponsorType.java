@@ -49,12 +49,6 @@ public class SponsorType {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, description);
-    }
-
-    @Override
     public String toString() {
         return "SponsorType{" +
                 "id=" + id +

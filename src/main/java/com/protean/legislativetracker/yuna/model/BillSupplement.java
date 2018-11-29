@@ -141,12 +141,6 @@ public class BillSupplement extends DateAuditable implements MappedBill {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, bill.getBillId(), localCopy, supplementType, mimeType, date, title, description, legiscanUrl, stateUrl);
-    }
-
-    @Override
     public String toString() {
         return "BillSupplement{" +
                 "id=" + id +

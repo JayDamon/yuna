@@ -132,12 +132,6 @@ public class LegislativeSession {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(sessionId, state, yearStart, yearEnd, special, sessionName, sessionTitle,
-                sessionHash);
-    }
-
-    @Override
     public String toString() {
         return "LegislativeSession{" +
                 "sessionId=" + sessionId +

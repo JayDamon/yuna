@@ -49,12 +49,6 @@ public class SastType {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, description);
-    }
-
-    @Override
     public String toString() {
         return "SastType{" +
                 "id=" + id +

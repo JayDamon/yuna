@@ -244,12 +244,6 @@ public class Person extends DateAuditable {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, state, role, party, name, firstName, middleName, lastName, suffix, nickname, district, committee, ballotpedia, followTheMoneyId, voteSmartId, openSecretsId, personHash, votes);
-    }
-
-    @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +

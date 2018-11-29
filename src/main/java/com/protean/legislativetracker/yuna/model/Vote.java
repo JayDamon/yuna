@@ -49,12 +49,6 @@ public class Vote {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(vote, description);
-    }
-
-    @Override
     public String toString() {
         return "Vote{" +
                 "vote=" + vote +

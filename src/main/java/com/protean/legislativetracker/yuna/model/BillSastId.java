@@ -48,11 +48,6 @@ public class BillSastId implements Serializable, BillId {
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(bill.getBillId(), sastBillId);
-    }
-
-    @Override
     public String toString() {
         return "BillSastId{" +
                 "bill=" + bill.getBillId() +

@@ -75,12 +75,6 @@ public class BillProgress implements MappedBillId<BillProgressId> {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, bill.getBillId(), progress, progressDate);
-    }
-
-    @Override
     public String toString() {
         return "BillProgress{" +
                 "id=" + id +

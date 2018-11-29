@@ -61,12 +61,6 @@ public class Role {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(id, roleName, roleAbbreviation);
-    }
-
-    @Override
     public String toString() {
         return "Role{" +
                 "id=" + id +

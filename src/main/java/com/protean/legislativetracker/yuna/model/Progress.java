@@ -49,12 +49,6 @@ public class Progress {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(Id, description);
-    }
-
-    @Override
     public String toString() {
         return "Progress{" +
                 "Id=" + Id +

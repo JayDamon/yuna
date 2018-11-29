@@ -114,12 +114,6 @@ public class BillText extends DateAuditable implements MappedBill {
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(textId, bill.getBillId(), localCopy, textType, mimeType, date, legiscanUrl, stateUrl);
-    }
-
-    @Override
     public String toString() {
         return "BillText{" +
                 "textId=" + textId +
