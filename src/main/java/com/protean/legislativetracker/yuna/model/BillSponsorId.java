@@ -56,7 +56,7 @@ public class BillSponsorId implements Serializable, BillId {
     @Override
     public String toString() {
         return "BillSponsorId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", sponsorOrder=" + sponsorOrder +
                 '}';
     }

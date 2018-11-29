@@ -175,7 +175,7 @@ public class BillAmendment extends DateAuditable implements MappedBill {
     public String toString() {
         return "BillAmendment{" +
                 "amendmentId=" + amendmentId +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", localCopy=" + localCopy +
                 ", adopted=" + adopted +
                 ", body=" + body +

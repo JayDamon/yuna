@@ -150,7 +150,7 @@ public class BillSupplement extends DateAuditable implements MappedBill {
     public String toString() {
         return "BillSupplement{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", localCopy=" + localCopy +
                 ", supplementType=" + supplementType +
                 ", mimeType=" + mimeType +

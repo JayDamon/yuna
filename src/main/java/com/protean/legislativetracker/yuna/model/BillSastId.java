@@ -55,7 +55,7 @@ public class BillSastId implements Serializable, BillId {
     @Override
     public String toString() {
         return "BillSastId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", sastBillId=" + sastBillId +
                 '}';
     }

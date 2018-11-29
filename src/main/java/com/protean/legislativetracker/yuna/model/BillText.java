@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_text")
-public class BillText extends DateAuditable {
+public class BillText extends DateAuditable implements MappedBill {
     @Id
     @Column(name = "text_id")
     private Long textId;
@@ -123,7 +123,7 @@ public class BillText extends DateAuditable {
     public String toString() {
         return "BillText{" +
                 "textId=" + textId +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", localCopy=" + localCopy +
                 ", textType=" + textType +
                 ", mimeType=" + mimeType +

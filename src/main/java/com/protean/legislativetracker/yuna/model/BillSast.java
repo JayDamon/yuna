@@ -88,7 +88,7 @@ public class BillSast implements MappedBillId<BillSastId> {
     public String toString() {
         return "BillSast{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", sastBill=" + sastBill +
                 ", sastType=" + sastType +
                 '}';

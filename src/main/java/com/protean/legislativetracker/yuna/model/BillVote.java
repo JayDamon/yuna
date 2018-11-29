@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -172,5 +173,51 @@ public class BillVote extends DateAuditable implements MappedBill {
 
     public void setDetails(Set<BillVoteDetail> details) {
         this.details = details;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillVote billVote = (BillVote) o;
+        return Objects.equals(voteId, billVote.voteId) &&
+                Objects.equals(bill, billVote.bill) &&
+                Objects.equals(body, billVote.body) &&
+                Objects.equals(date, billVote.date) &&
+                Objects.equals(description, billVote.description) &&
+                Objects.equals(yea, billVote.yea) &&
+                Objects.equals(nay, billVote.nay) &&
+                Objects.equals(nv, billVote.nv) &&
+                Objects.equals(absent, billVote.absent) &&
+                Objects.equals(total, billVote.total) &&
+                Objects.equals(passed, billVote.passed) &&
+                Objects.equals(legiscanUrl, billVote.legiscanUrl) &&
+                Objects.equals(stateUrl, billVote.stateUrl) &&
+                Objects.equals(details, billVote.details);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(voteId, bill, body, date, description, yea, nay, nv, absent, total, passed, legiscanUrl, stateUrl, details);
+    }
+
+    @Override
+    public String toString() {
+        return "BillVote{" +
+                "voteId=" + voteId +
+                ", bill=" + bill.getBillId() +
+                ", body=" + body +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", yea=" + yea +
+                ", nay=" + nay +
+                ", nv=" + nv +
+                ", absent=" + absent +
+                ", total=" + total +
+                ", passed=" + passed +
+                ", legiscanUrl=" + legiscanUrl +
+                ", stateUrl=" + stateUrl +
+                ", details=" + details +
+                '}';
     }
 }

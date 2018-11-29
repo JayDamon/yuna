@@ -58,7 +58,7 @@ public class BillCommitteeId implements Serializable {
     @Override
     public String toString() {
         return "BillCommitteeId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", committeeId=" + committeeId +
                 '}';
     }

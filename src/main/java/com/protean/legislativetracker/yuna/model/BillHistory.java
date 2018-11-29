@@ -110,7 +110,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     public String toString() {
         return "BillHistory{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", historyMajor=" + historyMajor +
                 ", body=" + body +
                 ", date=" + date +

@@ -126,7 +126,7 @@ public class BillCalendar extends DateAuditable implements MappedBillId<BillCale
     public String toString() {
         return "BillCalendar{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", eventType=" + eventType +
                 ", date=" + date +
                 ", time=" + time +

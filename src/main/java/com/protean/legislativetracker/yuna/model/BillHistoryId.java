@@ -54,7 +54,7 @@ public class BillHistoryId implements Serializable, BillId {
     @Override
     public String toString() {
         return "BillHistoryId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", historyStep=" + historyStep +
                 '}';
     }

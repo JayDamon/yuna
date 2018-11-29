@@ -57,7 +57,7 @@ public class BillCalendarId implements Serializable, BillId {
     @Override
     public String toString() {
         return "BillCalendarId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", eventHash='" + eventHash + '\'' +
                 '}';
     }

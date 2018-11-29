@@ -54,7 +54,7 @@ public class BillProgressId implements Serializable, BillId {
     @Override
     public String toString() {
         return "BillProgressId{" +
-                "bill=" + bill +
+                "bill=" + bill.getBillId() +
                 ", progressEventId=" + progressEventId +
                 '}';
     }

@@ -85,7 +85,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
     public String toString() {
         return "BillSponsor{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", person=" + person +
                 ", sponsorType=" + sponsorType +
                 '}';
