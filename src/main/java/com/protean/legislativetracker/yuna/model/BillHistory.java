@@ -36,6 +36,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
         this.id = new BillHistoryId(bill, historyStep);
     }
 
+    @Override
     public BillHistoryId getId() {
         return id;
     }

@@ -33,6 +33,7 @@ public class BillSast implements MappedBillId<BillSastId> {
 
     }
 
+    @Override
     public BillSastId getId() {
         return id;
     }

@@ -43,6 +43,7 @@ public class BillCalendar extends DateAuditable implements MappedBillId<BillCale
         this.id = new BillCalendarId(bill, eventHash);
     }
 
+    @Override
     public BillCalendarId getId() {
         return id;
     }

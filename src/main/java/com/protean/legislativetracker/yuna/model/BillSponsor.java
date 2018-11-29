@@ -29,6 +29,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
         this.id = new BillSponsorId(bill, sponsorOrder);
     }
 
+    @Override
     public BillSponsorId getId() {
         return id;
     }

@@ -30,6 +30,7 @@ public class BillProgress implements MappedBillId<BillProgressId> {
         this.id = new BillProgressId(bill, progressStep);
     }
 
+    @Override
     public BillProgressId getId() {
         return id;
     }
