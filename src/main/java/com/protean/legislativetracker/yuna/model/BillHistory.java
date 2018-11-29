@@ -17,7 +17,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     @Column(name = "history_major")
     private Integer historyMajor;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "history_body_id")
+    @JoinColumn(name = "history_body_id", insertable = false, updatable = false)
     private Body body;
     @Column(name = "history_date")
     private Date date;
