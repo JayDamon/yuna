@@ -5,10 +5,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class BillSastId implements Serializable {
+public class BillSastId implements Serializable, BillId {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id")
-    private Bill billId;
+    private Bill bill;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sast_bill_id")
     private Bill sastBillId;
@@ -16,17 +16,18 @@ public class BillSastId implements Serializable {
     public BillSastId() {
     }
 
-    public BillSastId(Bill billId, Bill sastBillId) {
-        this.billId = billId;
+    public BillSastId(Bill bill, Bill sastBillId) {
+        this.bill = bill;
         this.sastBillId = sastBillId;
     }
 
-    public Bill getBillId() {
-        return billId;
+    public Bill getBill() {
+        return bill;
     }
 
-    public void setBillId(Bill billId) {
-        this.billId = billId;
+    @Override
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     public Bill getSastBillId() {
@@ -42,19 +43,19 @@ public class BillSastId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BillSastId that = (BillSastId) o;
-        return Objects.equals(billId, that.billId) &&
+        return Objects.equals(bill, that.bill) &&
                 Objects.equals(sastBillId, that.sastBillId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(billId, sastBillId);
+        return Objects.hash(bill, sastBillId);
     }
 
     @Override
     public String toString() {
         return "BillSastId{" +
-                "billId=" + billId +
+                "bill=" + bill +
                 ", sastBillId=" + sastBillId +
                 '}';
     }

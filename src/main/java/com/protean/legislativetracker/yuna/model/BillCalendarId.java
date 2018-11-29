@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class BillCalendarId implements Serializable {
+public class BillCalendarId implements Serializable, BillId {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id")
     private Bill bill;
@@ -25,6 +25,7 @@ public class BillCalendarId implements Serializable {
         return bill;
     }
 
+    @Override
     public void setBill(Bill bill) {
         this.bill = bill;
     }

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_sponsor")
-public class BillSponsor {
+public class BillSponsor implements MappedBillId<BillSponsorId> {
 
     @EmbeddedId
     private BillSponsorId id;
@@ -33,6 +33,7 @@ public class BillSponsor {
         return id;
     }
 
+    @Override
     public void setId(BillSponsorId id) {
         this.id = id;
     }
@@ -41,6 +42,7 @@ public class BillSponsor {
         return bill;
     }
 
+    @Override
     public void setBill(Bill bill) {
         this.bill = bill;
     }

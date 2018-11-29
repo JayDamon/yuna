@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_amendment")
-public class BillAmendment extends DateAuditable {
+public class BillAmendment extends DateAuditable implements MappedBill {
     @Id
     @Column(name = "amendment_id")
     private Long amendmentId;
@@ -65,6 +65,7 @@ public class BillAmendment extends DateAuditable {
         return bill;
     }
 
+    @Override
     public void setBill(Bill bill) {
         this.bill = bill;
     }

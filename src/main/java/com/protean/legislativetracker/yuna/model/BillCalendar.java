@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_calendar")
-public class BillCalendar extends DateAuditable {
+public class BillCalendar extends DateAuditable implements MappedBillId<BillCalendarId> {
 
     @EmbeddedId
     private BillCalendarId id;
@@ -47,6 +47,7 @@ public class BillCalendar extends DateAuditable {
         return id;
     }
 
+    @Override
     public void setId(BillCalendarId id) {
         this.id = id;
     }
@@ -55,6 +56,7 @@ public class BillCalendar extends DateAuditable {
         return bill;
     }
 
+    @Override
     public void setBill(Bill bill) {
         this.bill = bill;
     }

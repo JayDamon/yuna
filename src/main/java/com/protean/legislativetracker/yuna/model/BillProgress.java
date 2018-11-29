@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "bill_progress")
-public class BillProgress {
+public class BillProgress implements MappedBillId<BillProgressId> {
 
     @EmbeddedId
     private BillProgressId id;

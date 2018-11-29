@@ -1,10 +1,11 @@
 package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "bill_sast")
-public class BillSast {
+public class BillSast implements MappedBillId<BillSastId> {
 
     @EmbeddedId
     private BillSastId id;
@@ -36,6 +37,7 @@ public class BillSast {
         return id;
     }
 
+    @Override
     public void setId(BillSastId id) {
         this.id = id;
     }
@@ -44,6 +46,7 @@ public class BillSast {
         return bill;
     }
 
+    @Override
     public void setBill(Bill bill) {
         this.bill = bill;
     }
@@ -64,4 +67,29 @@ public class BillSast {
         this.sastType = sastType;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BillSast billSast = (BillSast) o;
+        return Objects.equals(id, billSast.id) &&
+                Objects.equals(bill, billSast.bill) &&
+                Objects.equals(sastBill, billSast.sastBill) &&
+                Objects.equals(sastType, billSast.sastType);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, bill, sastBill, sastType);
+    }
+
+    @Override
+    public String toString() {
+        return "BillSast{" +
+                "id=" + id +
+                ", bill=" + bill +
+                ", sastBill=" + sastBill +
+                ", sastType=" + sastType +
+                '}';
+    }
 }

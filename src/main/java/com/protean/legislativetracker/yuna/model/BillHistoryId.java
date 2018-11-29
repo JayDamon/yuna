@@ -5,27 +5,28 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class BillHistoryId implements Serializable {
+public class BillHistoryId implements Serializable, BillId {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id")
-    private Bill billId;
+    private Bill bill;
     @Column(name = "history_step")
     private Integer historyStep;
 
     public BillHistoryId() {
     }
 
-    public BillHistoryId(Bill billId, Integer historyStep) {
-        this.billId = billId;
+    public BillHistoryId(Bill bill, Integer historyStep) {
+        this.bill = bill;
         this.historyStep = historyStep;
     }
 
-    public Bill getBillId() {
-        return billId;
+    public Bill getBill() {
+        return bill;
     }
 
-    public void setBillId(Bill billId) {
-        this.billId = billId;
+    @Override
+    public void setBill(Bill billId) {
+        this.bill = billId;
     }
 
     public Integer getHistoryStep() {
@@ -41,19 +42,19 @@ public class BillHistoryId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         BillHistoryId that = (BillHistoryId) o;
-        return Objects.equals(billId, that.billId) &&
+        return Objects.equals(bill, that.bill) &&
                 Objects.equals(historyStep, that.historyStep);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(billId, historyStep);
+        return Objects.hash(bill, historyStep);
     }
 
     @Override
     public String toString() {
         return "BillHistoryId{" +
-                "billId=" + billId +
+                "bill=" + bill +
                 ", historyStep=" + historyStep +
                 '}';
     }
