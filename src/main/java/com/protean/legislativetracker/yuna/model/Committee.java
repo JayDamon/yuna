@@ -41,7 +41,6 @@ public class Committee {
     }
 
     public void setId(Integer id) {
-        if (id.equals(0)) { id = null; }
         this.id = id;
     }
 
