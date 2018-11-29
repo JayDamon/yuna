@@ -15,7 +15,10 @@ public class Subject {
     private State state;
     @Column(name = "subject_name")
     private String name;
-    @ManyToMany(mappedBy = "subjects")
+    @ManyToMany
+    @JoinTable(name = "bill_subject",
+            joinColumns = @JoinColumn(name = "subject_id"),
+            inverseJoinColumns = @JoinColumn(name = "bill_id"))
     private Set<Bill> bills;
 
     public Subject() {
