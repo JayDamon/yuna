@@ -31,7 +31,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
         this.historyMajor = historyMajor;
         this.body = body;
         this.date = date;
-        this.id = new BillHistoryId(bill, action);
+        this.id = new BillHistoryId(bill, body, action);
     }
 
     @Override

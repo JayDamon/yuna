@@ -10,14 +10,19 @@ public class BillHistoryId implements Serializable, BillId {
     @JoinColumn(name = "bill_id")
     private Bill bill;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "history_body_id")
+    private Body body;
+
     @Column(name = "history_action")
     private String action;
 
     public BillHistoryId() {
     }
 
-    public BillHistoryId(Bill bill, String action) {
+    public BillHistoryId(Bill bill, Body body, String action) {
         this.bill = bill;
+        this.body = body;
         this.action = action;
     }
 
@@ -38,10 +43,19 @@ public class BillHistoryId implements Serializable, BillId {
         this.action = action;
     }
 
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
     @Override
     public String toString() {
         return "BillHistoryId{" +
                 "bill=" + bill.getBillId() +
+                ", body=" + body +
                 ", action='" + action + '\'' +
                 '}';
     }
