@@ -11,7 +11,7 @@ import java.util.Objects;
 public class BillCalendar extends DateAuditable implements MappedBillId<BillCalendarId> {
 
     @EmbeddedId
-    private BillCalendarId id;
+    private BillCalendarId id = new BillCalendarId();
 
     @ManyToOne
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)

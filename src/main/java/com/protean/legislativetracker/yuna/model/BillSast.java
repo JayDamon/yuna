@@ -8,7 +8,7 @@ import java.util.Objects;
 public class BillSast implements MappedBillId<BillSastId> {
 
     @EmbeddedId
-    private BillSastId id;
+    private BillSastId id = new BillSastId();
 
     @ManyToOne
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)

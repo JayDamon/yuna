@@ -9,7 +9,7 @@ import java.util.Objects;
 public class BillHistory implements MappedBillId<BillHistoryId> {
 
     @EmbeddedId
-    private BillHistoryId id;
+    private BillHistoryId id = new BillHistoryId();
 
     @ManyToOne
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)
