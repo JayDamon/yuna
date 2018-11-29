@@ -50,8 +50,6 @@ public class BillCalendarId implements Serializable, BillId {
     @Override
     public int hashCode() {
         return Objects.hash(bill, eventHash);
-
-
    }
 
     @Override

@@ -33,23 +33,25 @@ public class BillCalendar extends DateAuditable implements MappedBillId<BillCale
     public BillCalendar() {
     }
 
-    public BillCalendar(Bill bill, String eventHash, EventType eventType, Date date, Time time, String location, String description) {
+    public BillCalendar(Bill bill, EventType eventType, Date date, Time time, String location, String description) {
         this.bill = bill;
         this.eventType = eventType;
         this.date = date;
         this.time = time;
         this.location = location;
         this.description = description;
-        this.id = new BillCalendarId(bill, eventHash);
+        this.id = new BillCalendarId(bill, String.valueOf(hashCode()));
     }
 
     @Override
     public BillCalendarId getId() {
+        id.setEventHash(String.valueOf(hashCode()));
         return id;
     }
 
     @Override
     public void setId(BillCalendarId id) {
+        id.setEventHash(String.valueOf(hashCode()));
         this.id = id;
     }
 
@@ -119,7 +121,7 @@ public class BillCalendar extends DateAuditable implements MappedBillId<BillCale
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bill, eventType, date, time, location, description);
+        return Objects.hash(bill, eventType, date, time, location, description);
     }
 
     @Override
