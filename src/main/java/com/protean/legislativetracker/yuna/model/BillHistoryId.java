@@ -17,13 +17,17 @@ public class BillHistoryId implements Serializable, BillId {
     @Column(name = "history_action")
     private String action;
 
+    @Column(name = "order")
+    private Integer order;
+
     public BillHistoryId() {
     }
 
-    public BillHistoryId(Bill bill, Body body, String action) {
+    public BillHistoryId(Bill bill, Body body, String action, Integer order) {
         this.bill = bill;
         this.body = body;
         this.action = action;
+        this.order = order;
     }
 
     public Bill getBill() {
@@ -51,12 +55,21 @@ public class BillHistoryId implements Serializable, BillId {
         this.body = body;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
     @Override
     public String toString() {
         return "BillHistoryId{" +
                 "bill=" + bill.getBillId() +
                 ", body=" + body +
                 ", action='" + action + '\'' +
+                ", order=" + order +
                 '}';
     }
 }
