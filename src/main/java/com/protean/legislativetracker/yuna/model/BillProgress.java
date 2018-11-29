@@ -17,8 +17,6 @@ public class BillProgress implements MappedBillId<BillProgressId> {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "progress_event_id")
     private Progress progress;
-    @Column(name = "progress_date")
-    private Date progressDate;
 
     public BillProgress() {
     }
@@ -26,8 +24,7 @@ public class BillProgress implements MappedBillId<BillProgressId> {
     public BillProgress(Bill bill, Progress progress, Integer progressStep, Date progressDate) {
         this.bill = bill;
         this.progress = progress;
-        this.progressDate = progressDate;
-        this.id = new BillProgressId(bill, progressStep);
+        this.id = new BillProgressId(bill, progressStep, progressDate);
     }
 
     @Override
@@ -55,32 +52,12 @@ public class BillProgress implements MappedBillId<BillProgressId> {
         this.progress = progress;
     }
 
-    public Date getProgressDate() {
-        return progressDate;
-    }
-
-    public void setProgressDate(Date progressDate) {
-        this.progressDate = progressDate;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillProgress that = (BillProgress) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(bill, that.bill) &&
-                Objects.equals(progress, that.progress) &&
-                Objects.equals(progressDate, that.progressDate);
-    }
-
     @Override
     public String toString() {
         return "BillProgress{" +
                 "id=" + id +
                 ", bill=" + bill.getBillId() +
                 ", progress=" + progress +
-                ", progressDate=" + progressDate +
                 '}';
     }
 }
