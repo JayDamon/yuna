@@ -17,7 +17,7 @@ public class BillHistoryId implements Serializable, BillId {
     @Column(name = "history_action")
     private String action;
 
-    @Column(name = "order")
+    @Column(name = "history_order")
     private Integer order;
 
     public BillHistoryId() {
