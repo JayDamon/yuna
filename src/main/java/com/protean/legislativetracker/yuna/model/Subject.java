@@ -15,11 +15,6 @@ public class Subject {
     private State state;
     @Column(name = "subject_name")
     private String name;
-    @ManyToMany
-    @JoinTable(name = "bill_subject",
-            joinColumns = @JoinColumn(name = "subject_id"),
-            inverseJoinColumns = @JoinColumn(name = "bill_id"))
-    private Set<Bill> bills;
 
     public Subject() {
     }
@@ -28,7 +23,6 @@ public class Subject {
         this.id = id;
         this.state = state;
         this.name = name;
-        this.bills = bills;
     }
 
     public Long getId() {
@@ -55,14 +49,6 @@ public class Subject {
         this.name = name;
     }
 
-    public Set<Bill> getBills() {
-        return bills;
-    }
-
-    public void setBills(Set<Bill> bills) {
-        this.bills = bills;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,8 +56,7 @@ public class Subject {
         Subject subject1 = (Subject) o;
         return Objects.equals(id, subject1.id) &&
                 Objects.equals(state, subject1.state) &&
-                Objects.equals(name, subject1.name) &&
-                Objects.equals(bills, subject1.bills);
+                Objects.equals(name, subject1.name);
     }
 
     @Override
@@ -80,7 +65,6 @@ public class Subject {
                 "id=" + id +
                 ", state=" + state +
                 ", name='" + name + '\'' +
-                ", bills=" + bills +
                 '}';
     }
 }
