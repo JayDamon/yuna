@@ -52,7 +52,7 @@ public class BillCommitteeId implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bill, committeeId);
+        return Objects.hash(bill.getBillId(), committeeId);
     }
 
     @Override

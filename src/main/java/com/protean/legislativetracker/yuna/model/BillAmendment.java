@@ -168,7 +168,7 @@ public class BillAmendment extends DateAuditable implements MappedBill {
     @Override
     public int hashCode() {
 
-        return Objects.hash(amendmentId, bill, localCopy, adopted, body, mimeType, date, title, description, legiscanUrl, stateUrl);
+        return Objects.hash(amendmentId, bill.getBillId(), localCopy, adopted, body, mimeType, date, title, description, legiscanUrl, stateUrl);
     }
 
     @Override

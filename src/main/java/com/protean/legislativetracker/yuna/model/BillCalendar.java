@@ -121,7 +121,7 @@ public class BillCalendar extends DateAuditable implements MappedBillId<BillCale
     @Override
     public int hashCode() {
 
-        return Objects.hash(bill, eventType, date, time, location, description);
+        return Objects.hash(bill.getBillId(), eventType, date, time, location, description);
     }
 
     @Override

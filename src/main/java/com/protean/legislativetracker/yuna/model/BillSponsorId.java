@@ -50,7 +50,7 @@ public class BillSponsorId implements Serializable, BillId {
     @Override
     public int hashCode() {
 
-        return Objects.hash(bill, sponsorOrder);
+        return Objects.hash(bill.getBillId(), sponsorOrder);
     }
 
     @Override

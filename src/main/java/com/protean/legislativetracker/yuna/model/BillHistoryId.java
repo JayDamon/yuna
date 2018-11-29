@@ -48,7 +48,7 @@ public class BillHistoryId implements Serializable, BillId {
 
     @Override
     public int hashCode() {
-        return Objects.hash(bill, historyStep);
+        return Objects.hash(bill.getBillId(), historyStep);
     }
 
     @Override

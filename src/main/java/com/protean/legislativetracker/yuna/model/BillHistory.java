@@ -103,7 +103,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bill, historyMajor, body, date, action);
+        return Objects.hash(id, bill.getBillId(), historyMajor, body, date, action);
     }
 
     @Override

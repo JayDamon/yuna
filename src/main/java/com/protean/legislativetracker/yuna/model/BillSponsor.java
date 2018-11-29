@@ -78,7 +78,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, bill, person, sponsorType);
+        return Objects.hash(id, bill.getBillId(), person, sponsorType);
     }
 
     @Override

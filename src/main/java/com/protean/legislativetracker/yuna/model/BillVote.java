@@ -198,7 +198,7 @@ public class BillVote extends DateAuditable implements MappedBill {
 
     @Override
     public int hashCode() {
-        return Objects.hash(voteId, bill, body, date, description, yea, nay, nv, absent, total, passed, legiscanUrl, stateUrl, details);
+        return Objects.hash(voteId, bill.getBillId(), body, date, description, yea, nay, nv, absent, total, passed, legiscanUrl, stateUrl, details);
     }
 
     @Override
