@@ -66,7 +66,7 @@ public class Bill extends DateAuditable {
     private Set<BillProgress> progress;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillHistory> histories;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "bill")
     private Set<BillSponsor> sponsors;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill", orphanRemoval = true)
     private Set<BillSast> sasts;
