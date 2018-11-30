@@ -14,7 +14,7 @@ public class BillHistoryId implements Serializable, BillId {
     @JoinColumn(name = "history_body_id")
     private Body body;
 
-    @Column(name = "history_action")
+    @Column(name = "history_action", columnDefinition = "text")
     private String action;
 
     @Column(name = "history_order")
