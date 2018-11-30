@@ -14,9 +14,6 @@ public class BillHistoryId implements Serializable, BillId {
     @JoinColumn(name = "history_body_id")
     private Body body;
 
-    @Column(name = "history_action", columnDefinition = "text")
-    private String action;
-
     @Column(name = "history_order")
     private Integer order;
 
@@ -26,7 +23,6 @@ public class BillHistoryId implements Serializable, BillId {
     public BillHistoryId(Bill bill, Body body, String action, Integer order) {
         this.bill = bill;
         this.body = body;
-        this.action = action;
         this.order = order;
     }
 
@@ -37,14 +33,6 @@ public class BillHistoryId implements Serializable, BillId {
     @Override
     public void setBill(Bill billId) {
         this.bill = billId;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
     }
 
     public Body getBody() {
@@ -68,7 +56,6 @@ public class BillHistoryId implements Serializable, BillId {
         return "BillHistoryId{" +
                 "bill=" + bill.getBillId() +
                 ", body=" + body +
-                ", action='" + action + '\'' +
                 ", order=" + order +
                 '}';
     }

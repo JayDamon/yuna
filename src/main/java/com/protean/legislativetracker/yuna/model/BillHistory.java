@@ -21,6 +21,8 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     private Body body;
     @Column(name = "history_date")
     private Date date;
+    @Column(name = "history_action", columnDefinition = "text")
+    private String action;
 
 
     public BillHistory() {
@@ -77,26 +79,23 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
         this.date = date;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillHistory that = (BillHistory) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(bill, that.bill) &&
-                Objects.equals(historyMajor, that.historyMajor) &&
-                Objects.equals(body, that.body) &&
-                Objects.equals(date, that.date);
+    public String getAction() {
+        return action;
+    }
+
+    public void setAction(String action) {
+        this.action = action;
     }
 
     @Override
     public String toString() {
         return "BillHistory{" +
                 "id=" + id +
-                ", bill=" + bill.getBillId() +
+                ", bill=" + bill +
                 ", historyMajor=" + historyMajor +
                 ", body=" + body +
                 ", date=" + date +
+                ", action='" + action + '\'' +
                 '}';
     }
 }
