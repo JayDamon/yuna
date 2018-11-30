@@ -16,9 +16,15 @@ public class LoadTestData {
         this.dataSource = dataSource;
     }
 
-    public void loadSessionData() {
+    public void loadInitialBills() {
 
-        Resource resource = new ClassPathResource("initialdata.sql");
+        Resource resource = new ClassPathResource("initialbilldata.sql");
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
+        databasePopulator.execute(dataSource);
+    }
+
+    public void loadInitialSessions() {
+        Resource resource = new ClassPathResource("initialsessiondata.sql");
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
         databasePopulator.execute(dataSource);
     }
