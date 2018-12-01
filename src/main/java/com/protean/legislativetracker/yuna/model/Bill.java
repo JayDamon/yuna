@@ -42,9 +42,9 @@ public class Bill extends DateAuditable {
     @Column(name = "bill_Number", nullable = false)
     private String billNumber;
     @OneToOne
-    @JoinColumn(name = "progress_step_id", nullable = false)
+    @JoinColumn(name = "progress_step_id")
     private Progress status;
-    @Column(name = "status_date", nullable = false)
+    @Column(name = "status_date")
     private Date statusDate;
     @Column(name = "title", nullable = false, columnDefinition = "text")
     private String title;

@@ -85,7 +85,7 @@ public class Committee {
                 "id=" + id +
                 ", body=" + body +
                 ", name='" + name + '\'' +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 '}';
     }
 }
