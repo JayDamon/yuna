@@ -29,11 +29,11 @@ public class Committee {
     public Committee() {
     }
 
-    public Committee(Integer id, Body body, String name, Bill bills) {
+    public Committee(Integer id, Body body, String name, Bill bill) {
         setId(id);
         this.body = body;
         this.name = name;
-        this.bill = bills;
+        this.bill = bill;
     }
 
     public Integer getId() {
@@ -60,12 +60,12 @@ public class Committee {
         this.name = name;
     }
 
-    public Bill getBills() {
+    public Bill getBill() {
         return bill;
     }
 
-    public void setBills(Bill bills) {
-        this.bill = bills;
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     @Override
