@@ -5,8 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -48,14 +50,9 @@ public class Bill extends DateAuditable {
     private String title;
     @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
-    @ManyToMany(cascade = CascadeType.PERSIST)
-    @JoinTable(name = "bill_committee",
-            joinColumns = @JoinColumn(name = "bill_id"),
-            inverseJoinColumns = @JoinColumn(name = "committee_id"))
-    private Set<Committee> committees;
-    @OneToOne(cascade=CascadeType.PERSIST)
-    @JoinColumn(name = "pending_committee_id")
-    private Committee pendingCommittee;
+    @OneToOne
+    @JoinColumn(name = "committee_id")
+    private Committee committee;
     @Column(name = "url", nullable = false)
     private URL legiscanUrl;
     @Column(name = "state_link", nullable = false)
@@ -89,7 +86,7 @@ public class Bill extends DateAuditable {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Set<Committee> committees, Committee pendingCommittee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee committee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -101,8 +98,7 @@ public class Bill extends DateAuditable {
         this.statusDate = statusDate;
         this.title = title;
         this.description = description;
-        this.committees = committees;
-        this.pendingCommittee = pendingCommittee;
+        this.committee = committee;
         this.legiscanUrl = legiscanUrl;
         this.stateUrl = stateUrl;
         this.changeHash = changeHash;
@@ -206,20 +202,12 @@ public class Bill extends DateAuditable {
         this.description = description;
     }
 
-    public Set<Committee> getCommittees() {
-        return committees;
+    public Committee getCommittee() {
+        return committee;
     }
 
-    public void setCommittees(Set<Committee> committees) {
-        this.committees = committees;
-    }
-
-    public Committee getPendingCommittee() {
-        return pendingCommittee;
-    }
-
-    public void setPendingCommittee(Committee pendingCommittee) {
-        this.pendingCommittee = pendingCommittee;
+    public void setCommittee(Committee committee) {
+        this.committee = committee;
     }
 
     public URL getLegiscanUrl() {
@@ -326,10 +314,6 @@ public class Bill extends DateAuditable {
         this.calendars = calendars;
     }
 
-    public Bill getBill() {
-        return this;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -346,8 +330,7 @@ public class Bill extends DateAuditable {
                 Objects.equals(statusDate, bill.statusDate) &&
                 Objects.equals(title, bill.title) &&
                 Objects.equals(description, bill.description) &&
-                Objects.equals(committees, bill.committees) &&
-                Objects.equals(pendingCommittee, bill.pendingCommittee) &&
+                Objects.equals(committee, bill.committee) &&
                 Objects.equals(legiscanUrl, bill.legiscanUrl) &&
                 Objects.equals(stateUrl, bill.stateUrl) &&
                 Objects.equals(changeHash, bill.changeHash) &&
@@ -377,8 +360,7 @@ public class Bill extends DateAuditable {
                 ", statusDate=" + statusDate +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", committees=" + committees +
-                ", pendingCommittee=" + pendingCommittee +
+                ", committee=" + committee +
                 ", legiscanUrl=" + legiscanUrl +
                 ", stateUrl=" + stateUrl +
                 ", changeHash='" + changeHash + '\'' +

@@ -5,11 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "committee")
@@ -23,17 +22,18 @@ public class Committee {
     private Body body;
     @Column(name = "committee_name", nullable = false)
     private String name;
-    @ManyToMany(mappedBy = "committees")
-    private Set<Bill> bills;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "bill_id")
+    private Bill bill;
 
     public Committee() {
     }
 
-    public Committee(Integer id, Body body, String name, Set<Bill> bills) {
+    public Committee(Integer id, Body body, String name, Bill bills) {
         setId(id);
         this.body = body;
         this.name = name;
-        this.bills = bills;
+        this.bill = bills;
     }
 
     public Integer getId() {
@@ -60,12 +60,12 @@ public class Committee {
         this.name = name;
     }
 
-    public Set<Bill> getBills() {
-        return bills;
+    public Bill getBills() {
+        return bill;
     }
 
-    public void setBills(Set<Bill> bills) {
-        this.bills = bills;
+    public void setBills(Bill bills) {
+        this.bill = bills;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Committee {
         return Objects.equals(id, committee.id) &&
                 Objects.equals(body, committee.body) &&
                 Objects.equals(name, committee.name) &&
-                Objects.equals(bills, committee.bills);
+                Objects.equals(bill, committee.bill);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Committee {
                 "id=" + id +
                 ", body=" + body +
                 ", name='" + name + '\'' +
-                ", bills=" + bills +
+                ", bill=" + bill +
                 '}';
     }
 }
