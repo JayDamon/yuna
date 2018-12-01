@@ -16,7 +16,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
     @JoinColumn(name = "person_id")
     private Person person;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sponsort_type_id")
+    @JoinColumn(name = "sponsort_type_id", insertable = false, updatable = false)
     private SponsorType sponsorType;
 
     public BillSponsor() {
@@ -26,7 +26,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
         this.bill = bill;
         this.person = person;
         this.sponsorType = sponsorType;
-        this.id = new BillSponsorId(bill, sponsorOrder);
+        this.id = new BillSponsorId(bill, sponsorOrder, person);
     }
 
     @Override

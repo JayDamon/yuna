@@ -2,8 +2,6 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Objects;
 
 @Embeddable
 public class BillProgressId implements Serializable, BillId {
@@ -11,17 +9,14 @@ public class BillProgressId implements Serializable, BillId {
     @JoinColumn(name = "bill_id")
     private Bill bill;
     @Column(name = "progress_step")
-    private Integer progressEventId;
-    @Column(name = "progress_date")
-    private Date progressDate;
+    private Integer progressStep;
 
     public BillProgressId() {
     }
 
-    public BillProgressId(Bill bill, Integer progressEventId, Date progressDate) {
+    public BillProgressId(Bill bill, Integer progressStep) {
         this.bill = bill;
-        this.progressEventId = progressEventId;
-        this.progressDate = progressDate;
+        this.progressStep = progressStep;
     }
 
     public Bill getBill() {
@@ -33,28 +28,19 @@ public class BillProgressId implements Serializable, BillId {
         this.bill = bill;
     }
 
-    public Integer getProgressEventId() {
-        return progressEventId;
+    public Integer getProgressStep() {
+        return progressStep;
     }
 
-    public void setProgressEventId(Integer progressEventId) {
-        this.progressEventId = progressEventId;
-    }
-
-    public Date getProgressDate() {
-        return progressDate;
-    }
-
-    public void setProgressDate(Date progressDate) {
-        this.progressDate = progressDate;
+    public void setProgressStep(Integer progressStep) {
+        this.progressStep = progressStep;
     }
 
     @Override
     public String toString() {
         return "BillProgressId{" +
                 "bill=" + bill.getBillId() +
-                ", progressEventId=" + progressEventId +
-                ", progressDate=" + progressDate +
+                ", progressStep=" + progressStep +
                 '}';
     }
 }

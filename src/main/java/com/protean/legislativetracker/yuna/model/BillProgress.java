@@ -17,14 +17,17 @@ public class BillProgress implements MappedBillId<BillProgressId> {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "progress_event_id")
     private Progress progress;
+    @Column(name = "progress_date")
+    private Date progressDate;
 
     public BillProgress() {
     }
 
-    public BillProgress(Bill bill, Progress progress, Integer progressStep, Date progressDate) {
+    public BillProgress(Bill bill, Progress progress, Date progressDate, Integer progressEventId) {
         this.bill = bill;
         this.progress = progress;
-        this.id = new BillProgressId(bill, progressStep, progressDate);
+        this.progressDate = progressDate;
+        this.id = new BillProgressId(bill, progressEventId);
     }
 
     @Override
@@ -52,12 +55,21 @@ public class BillProgress implements MappedBillId<BillProgressId> {
         this.progress = progress;
     }
 
+    public Date getProgressDate() {
+        return progressDate;
+    }
+
+    public void setProgressDate(Date progressDate) {
+        this.progressDate = progressDate;
+    }
+
     @Override
     public String toString() {
         return "BillProgress{" +
                 "id=" + id +
-                ", bill=" + bill.getBillId() +
+                ", bill=" + bill +
                 ", progress=" + progress +
+                ", progressDate=" + progressDate +
                 '}';
     }
 }

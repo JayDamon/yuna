@@ -12,13 +12,17 @@ public class BillSponsorId implements Serializable, BillId {
     private Bill bill;
     @Column(name = "sponsor_order")
     private Integer sponsorOrder;
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "person_id")
+    private Person person;
 
     public BillSponsorId() {
     }
 
-    public BillSponsorId(Bill bill, Integer sponsorOrder) {
+    public BillSponsorId(Bill bill, Integer sponsorOrder, Person person) {
         this.bill = bill;
         this.sponsorOrder = sponsorOrder;
+        this.person = person;
     }
 
     public Bill getBill() {
@@ -38,20 +42,20 @@ public class BillSponsorId implements Serializable, BillId {
         this.sponsorOrder = sponsorOrder;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        BillSponsorId that = (BillSponsorId) o;
-        return Objects.equals(bill, that.bill) &&
-                Objects.equals(sponsorOrder, that.sponsorOrder);
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
     public String toString() {
         return "BillSponsorId{" +
-                "bill=" + bill.getBillId() +
+                "bill=" + bill +
                 ", sponsorOrder=" + sponsorOrder +
+                ", person=" + person +
                 '}';
     }
 }
