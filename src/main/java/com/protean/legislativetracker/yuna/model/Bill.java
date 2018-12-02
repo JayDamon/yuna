@@ -50,7 +50,7 @@ public class Bill extends DateAuditable {
     private String title;
     @Column(name = "description", nullable = false, columnDefinition = "text")
     private String description;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "committee_id")
     private Committee committee;
     @Column(name = "url", nullable = false)
