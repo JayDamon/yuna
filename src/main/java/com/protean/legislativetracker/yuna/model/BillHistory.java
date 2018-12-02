@@ -17,7 +17,7 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
     @Column(name = "history_major")
     private Integer historyMajor;
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "history_body_id", insertable = false, updatable = false)
+    @JoinColumn(name = "history_body_id")
     private Body body;
     @Column(name = "history_date")
     private Date date;
@@ -33,7 +33,8 @@ public class BillHistory implements MappedBillId<BillHistoryId> {
         this.historyMajor = historyMajor;
         this.body = body;
         this.date = date;
-        this.id = new BillHistoryId(bill, body, action, order);
+        this.action = action;
+        this.id = new BillHistoryId(bill, order);
     }
 
     @Override
