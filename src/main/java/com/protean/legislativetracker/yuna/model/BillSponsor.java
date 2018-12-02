@@ -12,7 +12,7 @@ public class BillSponsor implements MappedBillId<BillSponsorId> {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bill_id", insertable = false, updatable = false)
     private Bill bill;
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id", insertable = false, updatable = false)
     private Person person;
     @OneToOne(fetch = FetchType.LAZY)

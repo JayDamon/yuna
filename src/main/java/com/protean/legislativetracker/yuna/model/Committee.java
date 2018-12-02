@@ -22,9 +22,6 @@ public class Committee {
     private Body body;
     @Column(name = "committee_name", nullable = false)
     private String name;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bill_id")
-    private Bill bill;
 
     public Committee() {
     }
@@ -33,7 +30,6 @@ public class Committee {
         setId(id);
         this.body = body;
         this.name = name;
-        this.bill = bill;
     }
 
     public Integer getId() {
@@ -60,14 +56,6 @@ public class Committee {
         this.name = name;
     }
 
-    public Bill getBill() {
-        return bill;
-    }
-
-    public void setBill(Bill bill) {
-        this.bill = bill;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,8 +63,7 @@ public class Committee {
         Committee committee = (Committee) o;
         return Objects.equals(id, committee.id) &&
                 Objects.equals(body, committee.body) &&
-                Objects.equals(name, committee.name) &&
-                Objects.equals(bill, committee.bill);
+                Objects.equals(name, committee.name);
     }
 
     @Override
@@ -85,7 +72,6 @@ public class Committee {
                 "id=" + id +
                 ", body=" + body +
                 ", name='" + name + '\'' +
-                ", bill=" + bill.getBillId() +
                 '}';
     }
 }
