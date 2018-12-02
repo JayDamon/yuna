@@ -36,7 +36,7 @@ public class BillServiceImpl implements BillService {
         Set<Committee> committees = new HashSet<>();
         for (Bill bill : bills) {
             Committee committee = bill.getCommittee();
-            if (committee != null && committeeService.existsById(committee.getId())) {
+            if (committee != null && !committeeService.existsById(committee.getId())) {
                 committees.add(committee);
             }
         }
