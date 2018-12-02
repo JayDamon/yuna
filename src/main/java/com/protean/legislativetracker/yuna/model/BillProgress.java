@@ -67,7 +67,7 @@ public class BillProgress implements MappedBillId<BillProgressId> {
     public String toString() {
         return "BillProgress{" +
                 "id=" + id +
-                ", bill=" + bill +
+                ", bill=" + bill.getBillId() +
                 ", progress=" + progress +
                 ", progressDate=" + progressDate +
                 '}';

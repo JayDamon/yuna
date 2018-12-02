@@ -84,7 +84,7 @@ public class BillSast implements MappedBillId<BillSastId> {
         return "BillSast{" +
                 "id=" + id +
                 ", bill=" + bill.getBillId() +
-                ", sastBill=" + sastBill +
+                ", sastBill=" + sastBill.getBillId() +
                 ", sastType=" + sastType +
                 '}';
     }
