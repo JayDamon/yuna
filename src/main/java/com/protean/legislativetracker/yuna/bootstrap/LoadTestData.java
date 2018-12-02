@@ -29,4 +29,10 @@ public class LoadTestData {
         databasePopulator.execute(dataSource);
     }
 
+    public void loadInitialStartData() {
+        Resource resource = new ClassPathResource("data-h2.sql");
+        ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
+        databasePopulator.execute(dataSource);
+    }
+
 }

@@ -23,9 +23,9 @@ public class State {
     private String carryOver;
     @Column(name = "capitol", nullable = false)
     private String capitol;
-    @Column(name = "latitude")
+    @Column(name = "latitude", precision = 18, scale = 6)
     private BigDecimal latitude;
-    @Column(name = "longitude")
+    @Column(name = "longitude", precision = 18, scale = 6)
     private BigDecimal longitude;
 
     public State() {

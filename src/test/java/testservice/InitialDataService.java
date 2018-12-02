@@ -18,6 +18,7 @@ public class InitialDataService {
     public void initializeData(DataSource dataSource) {
         if (!initialized) {
             LoadTestData loadTestData = new LoadTestData(dataSource);
+            loadTestData.loadInitialStartData();
             loadTestData.loadInitialSessions();
             loadTestData.loadInitialBills();
             initialized = true;
