@@ -37,7 +37,6 @@ INSERT INTO party (party_id, party_abbr, party_short, party_name) VALUES(4, 'G',
 INSERT INTO party (party_id, party_abbr, party_short, party_name) VALUES(5, 'L', 'Lib', 'Libertarian');
 INSERT INTO party (party_id, party_abbr, party_short, party_name) VALUES(6, 'N', 'NP', 'Nonpartisan');
 
-
 INSERT INTO reason (reason_id, reason_desc) VALUES(1, 'NewBill');
 INSERT INTO reason (reason_id, reason_desc) VALUES(2, 'StatusChange');
 INSERT INTO reason (reason_id, reason_desc) VALUES(3, 'Chamber');

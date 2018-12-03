@@ -17,7 +17,6 @@ public class LoadTestData {
     }
 
     public void loadInitialBills() {
-
         Resource resource = new ClassPathResource("initialbilldata.sql");
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
         databasePopulator.execute(dataSource);
