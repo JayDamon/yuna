@@ -29,7 +29,7 @@ public class LoadTestData {
     }
 
     public void loadInitialStartData() {
-        Resource resource = new ClassPathResource("data-h2.sql");
+        Resource resource = new ClassPathResource("data-yuna.sql");
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator(resource);
         databasePopulator.execute(dataSource);
     }
