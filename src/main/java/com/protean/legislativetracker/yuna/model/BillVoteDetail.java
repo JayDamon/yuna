@@ -13,7 +13,7 @@ public class BillVoteDetail implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "roll_call_id", insertable = false, updatable = false)
-    private BillVote rollCall;
+    private RollCall rollCall;
     @ManyToOne
     @JoinColumn(name = "people_id", insertable = false, updatable = false)
     private Person person;
@@ -24,7 +24,7 @@ public class BillVoteDetail implements Serializable {
     public BillVoteDetail() {
     }
 
-    public BillVoteDetail(BillVote rollCall, Person person, Vote vote) {
+    public BillVoteDetail(RollCall rollCall, Person person, Vote vote) {
         this.rollCall = rollCall;
         this.person = person;
         this.vote = vote;
@@ -41,11 +41,11 @@ public class BillVoteDetail implements Serializable {
         this.id = id;
     }
 
-    public BillVote getRollCall() {
+    public RollCall getRollCall() {
         return rollCall;
     }
 
-    public void setRollCall(BillVote rollCall) {
+    public void setRollCall(RollCall rollCall) {
         this.rollCall = rollCall;
     }
 

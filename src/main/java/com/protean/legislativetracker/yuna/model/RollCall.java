@@ -2,14 +2,13 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.net.URL;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "bill_vote")
-public class BillVote extends DateAuditable implements MappedBill {
+public class RollCall extends DateAuditable implements MappedBill {
     @Id
     @Column(name = "roll_call_id")
     private Long voteId;
@@ -43,10 +42,10 @@ public class BillVote extends DateAuditable implements MappedBill {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "rollCall")
     private Set<BillVoteDetail> details;
 
-    public BillVote() {
+    public RollCall() {
     }
 
-    public BillVote(Long voteId, Bill bill, Body body, Date date, Integer yea, Integer nay, Integer nv, Integer absent, Integer total, Boolean passed, URL legiscanUrl, URL stateUrl, Set<BillVoteDetail> details) {
+    public RollCall(Long voteId, Bill bill, Body body, Date date, Integer yea, Integer nay, Integer nv, Integer absent, Integer total, Boolean passed, URL legiscanUrl, URL stateUrl, Set<BillVoteDetail> details) {
         this.voteId = voteId;
         this.bill = bill;
         this.body = body;
@@ -179,26 +178,26 @@ public class BillVote extends DateAuditable implements MappedBill {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BillVote billVote = (BillVote) o;
-        return Objects.equals(voteId, billVote.voteId) &&
-                Objects.equals(bill, billVote.bill) &&
-                Objects.equals(body, billVote.body) &&
-                Objects.equals(date, billVote.date) &&
-                Objects.equals(description, billVote.description) &&
-                Objects.equals(yea, billVote.yea) &&
-                Objects.equals(nay, billVote.nay) &&
-                Objects.equals(nv, billVote.nv) &&
-                Objects.equals(absent, billVote.absent) &&
-                Objects.equals(total, billVote.total) &&
-                Objects.equals(passed, billVote.passed) &&
-                Objects.equals(legiscanUrl, billVote.legiscanUrl) &&
-                Objects.equals(stateUrl, billVote.stateUrl) &&
-                Objects.equals(details, billVote.details);
+        RollCall rollCall = (RollCall) o;
+        return Objects.equals(voteId, rollCall.voteId) &&
+                Objects.equals(bill, rollCall.bill) &&
+                Objects.equals(body, rollCall.body) &&
+                Objects.equals(date, rollCall.date) &&
+                Objects.equals(description, rollCall.description) &&
+                Objects.equals(yea, rollCall.yea) &&
+                Objects.equals(nay, rollCall.nay) &&
+                Objects.equals(nv, rollCall.nv) &&
+                Objects.equals(absent, rollCall.absent) &&
+                Objects.equals(total, rollCall.total) &&
+                Objects.equals(passed, rollCall.passed) &&
+                Objects.equals(legiscanUrl, rollCall.legiscanUrl) &&
+                Objects.equals(stateUrl, rollCall.stateUrl) &&
+                Objects.equals(details, rollCall.details);
     }
 
     @Override
     public String toString() {
-        return "BillVote{" +
+        return "RollCall{" +
                 "voteId=" + voteId +
                 ", bill=" + bill.getBillId() +
                 ", body=" + body +

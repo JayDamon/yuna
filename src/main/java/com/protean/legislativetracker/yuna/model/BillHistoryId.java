@@ -2,7 +2,6 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 public class BillHistoryId implements Serializable, BillId {

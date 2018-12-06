@@ -5,10 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -75,7 +73,7 @@ public class Bill extends DateAuditable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillText> texts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
-    private Set<BillVote> votes;
+    private Set<RollCall> votes;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillAmendment> amendments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
@@ -86,7 +84,7 @@ public class Bill extends DateAuditable {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee committee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<BillVote> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee committee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<RollCall> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -282,11 +280,11 @@ public class Bill extends DateAuditable {
         this.texts = texts;
     }
 
-    public Set<BillVote> getVotes() {
+    public Set<RollCall> getVotes() {
         return votes;
     }
 
-    public void setVotes(Set<BillVote> votes) {
+    public void setVotes(Set<RollCall> votes) {
         this.votes = votes;
     }
 

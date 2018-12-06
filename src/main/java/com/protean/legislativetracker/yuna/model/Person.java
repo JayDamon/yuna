@@ -1,7 +1,6 @@
 package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Objects;
 import java.util.Set;
 

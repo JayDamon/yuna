@@ -2,7 +2,6 @@ package com.protean.legislativetracker.yuna.model;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "bill_progress")

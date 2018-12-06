@@ -8,7 +8,7 @@ import java.util.Objects;
 public class BillVoteDetailId implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "roll_call_id")
-    private BillVote rollCall;
+    private RollCall rollCall;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "people_id")
     private Person person;
@@ -16,16 +16,16 @@ public class BillVoteDetailId implements Serializable {
     public BillVoteDetailId() {
     }
 
-    public BillVoteDetailId(BillVote rollCall, Person person) {
+    public BillVoteDetailId(RollCall rollCall, Person person) {
         this.rollCall = rollCall;
         this.person = person;
     }
 
-    public BillVote getRollCall() {
+    public RollCall getRollCall() {
         return rollCall;
     }
 
-    public void setRollCall(BillVote rollCall) {
+    public void setRollCall(RollCall rollCall) {
         this.rollCall = rollCall;
     }
 

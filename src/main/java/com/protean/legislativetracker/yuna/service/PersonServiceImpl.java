@@ -1,6 +1,5 @@
 package com.protean.legislativetracker.yuna.service;
 
-import com.protean.legislativetracker.yuna.model.Bill;
 import com.protean.legislativetracker.yuna.model.Person;
 import com.protean.legislativetracker.yuna.repository.PersonRepository;
 import org.slf4j.Logger;
