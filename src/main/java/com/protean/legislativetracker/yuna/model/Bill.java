@@ -73,7 +73,7 @@ public class Bill extends DateAuditable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillText> texts;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
-    private Set<RollCall> votes;
+    private Set<RollCall> rolLCalls;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
     private Set<BillAmendment> amendments;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bill")
@@ -84,7 +84,7 @@ public class Bill extends DateAuditable {
     public Bill() {
     }
 
-    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee committee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<RollCall> votes, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
+    public Bill(Long billId, State state, LegislativeSession legislativeSession, Body body, Body currentBody, Type type, String billNumber, Progress status, Date statusDate, String title, String description, Committee committee, URL legiscanUrl, URL stateUrl, String changeHash, Set<BillProgress> progress, Set<BillHistory> histories, Set<BillSponsor> sponsors, Set<BillSast> sasts, Set<Subject> subjects, Set<BillText> texts, Set<RollCall> rolLCalls, Set<BillAmendment> amendments, Set<BillSupplement> supplements, Set<BillCalendar> calendars) {
         this.billId = billId;
         this.state = state;
         this.legislativeSession = legislativeSession;
@@ -106,7 +106,7 @@ public class Bill extends DateAuditable {
         this.sasts = sasts;
         this.subjects = subjects;
         this.texts = texts;
-        this.votes = votes;
+        this.rolLCalls = rolLCalls;
         this.amendments = amendments;
         this.supplements = supplements;
         this.calendars = calendars;
@@ -280,12 +280,12 @@ public class Bill extends DateAuditable {
         this.texts = texts;
     }
 
-    public Set<RollCall> getVotes() {
-        return votes;
+    public Set<RollCall> getRolLCalls() {
+        return rolLCalls;
     }
 
-    public void setVotes(Set<RollCall> votes) {
-        this.votes = votes;
+    public void setRolLCalls(Set<RollCall> rolLCalls) {
+        this.rolLCalls = rolLCalls;
     }
 
     public Set<BillAmendment> getAmendments() {
@@ -338,7 +338,7 @@ public class Bill extends DateAuditable {
                 Objects.equals(sasts, bill.sasts) &&
                 Objects.equals(subjects, bill.subjects) &&
                 Objects.equals(texts, bill.texts) &&
-                Objects.equals(votes, bill.votes) &&
+                Objects.equals(rolLCalls, bill.rolLCalls) &&
                 Objects.equals(amendments, bill.amendments) &&
                 Objects.equals(supplements, bill.supplements) &&
                 Objects.equals(calendars, bill.calendars);
@@ -368,7 +368,7 @@ public class Bill extends DateAuditable {
                 ", sasts=" + sasts +
                 ", subjects=" + subjects +
                 ", texts=" + texts +
-                ", votes=" + votes +
+                ", rolLCalls=" + rolLCalls +
                 ", amendments=" + amendments +
                 ", supplements=" + supplements +
                 ", calendars=" + calendars +
