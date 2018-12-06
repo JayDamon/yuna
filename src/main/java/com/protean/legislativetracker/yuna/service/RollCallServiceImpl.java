@@ -2,10 +2,12 @@ package com.protean.legislativetracker.yuna.service;
 
 import com.protean.legislativetracker.yuna.model.RollCall;
 import com.protean.legislativetracker.yuna.repository.RollCallRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class RollCallServiceImpl implements RollCallService {
 
     private RollCallRepository rollCallRepository;
