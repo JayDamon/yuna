@@ -11,24 +11,24 @@ import java.util.Objects;
 public class Progress {
     @Id
     @Column(name = "progress_step_id", nullable = false)
-    private Integer Id;
+    private Integer statusId;
     @Column(name = "progress_desc", nullable = false)
     private String description;
 
     public Progress() {
     }
 
-    public Progress(Integer Id, String description) {
-        this.Id = Id;
+    public Progress(Integer statusId, String description) {
+        this.statusId = statusId;
         this.description = description;
     }
 
-    public Integer getId() {
-        return Id;
+    public Integer getStatusId() {
+        return statusId;
     }
 
-    public void setId(Integer id) {
-        this.Id = id;
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
     }
 
     public String getDescription() {
@@ -44,14 +44,14 @@ public class Progress {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Progress progress = (Progress) o;
-        return Objects.equals(Id, progress.Id) &&
+        return Objects.equals(statusId, progress.statusId) &&
                 Objects.equals(description, progress.description);
     }
 
     @Override
     public String toString() {
         return "Progress{" +
-                "Id=" + Id +
+                "statusId=" + statusId +
                 ", description='" + description + '\'' +
                 '}';
     }
