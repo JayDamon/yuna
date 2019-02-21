@@ -3,9 +3,10 @@ package com.protean.legislativetracker.yuna.model;
 import javax.persistence.*;
 import java.util.Objects;
 
+//Legislative body, i.e. House, Senate etc
 @Entity
 @Table(name = "body")
-public class Body { //Legislative body, i.e. House, Senate etc
+public class Body {
     @Id
     @Column(name = "body_id", nullable = false)
     private Integer id;
